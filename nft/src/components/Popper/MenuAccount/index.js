@@ -10,10 +10,14 @@ function MenuAccount({ children, items = [] }) {
     <Tippy
       placement="bottom-end"
       interactive
-      delay={[0, 500]}
+      delay={[0, 300]}
+      hideOnClick={false}
       render={(attrs) => (
         <div className="box w-[200px]" tabIndex="-1" {...attrs}>
-          <PopperWrapper>
+          <PopperWrapper className={'bg-white dark:bg-[#1e2329] pb-0'}>
+            <div className="flex p-4 text-xl font-semibold text-textColor dark:text-textDarkMode leading-5">
+              do***@gmail.com
+            </div>
             <div>{renderItems()}</div>
           </PopperWrapper>
         </div>

@@ -1,14 +1,14 @@
-import { faAddressCard, faCircleXmark, faHeart, faTags, faUser, faWallet } from '@fortawesome/free-solid-svg-icons';
+import { faAddressCard, faHeart, faTags, faUser, faWallet, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import images from '../../../assets/images';
-import { DarkIcon, FireIcon, LightIcon, SearchIcon } from '../../../components/Icons';
-import Tippy from '@tippyjs/react/headless';
-import { Wrapper as PopperWrapper } from '../../../components/Popper';
-import NFTItems from './NFTItems';
+import { DarkIcon, LightIcon } from '../../../components/Icons';
 import Button from '../../../components/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import StraightBrick from '../../../components/Brick';
 import MenuAccount from '../../../components/Popper/MenuAccount';
+import routesConfig from '../../../config/routes';
+import Search from './Search';
+import { Link } from 'react-router-dom';
 
 const menuAccountItem = [
   {
@@ -31,51 +31,56 @@ const menuAccountItem = [
     title: 'Profile',
     to: '/profile',
   },
+  {
+    icon: <FontAwesomeIcon icon={faSignOut} />,
+    title: 'Log out',
+    to: '/logout',
+    separate: true,
+  },
 ];
 
 function Header() {
-  const [darkMode, setDarkMode] = useState(false);
+  const isLogin = true;
+  const [darkMode, setDarkMode] = useState('light');
+
+  useEffect(() => {
+    if (localStorage.getItem('theme') === null) {
+      localStorage.setItem('theme', 'light');
+    }
+  }, []);
+
+  useEffect(() => {
+    const html = document.querySelector('html');
+    if (localStorage.getItem('theme') === 'dark') {
+      html.classList.add('dark');
+      setDarkMode('dark');
+    } else {
+      html.classList.remove('dark');
+      setDarkMode('light');
+    }
+  }, [darkMode]);
+
+  const handleDarkModeSwitch = () => {
+    if (localStorage.getItem('theme') === 'light') {
+      setDarkMode('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      setDarkMode('light');
+      localStorage.setItem('theme', 'light');
+    }
+  };
+
   return (
-    <header className="header-wrapper h-20 px-6 fixed w-full top-0 left-0 flex shadow-state-100  justify-center z-50 border-b border-[#eaecef]">
-      <div className="header-inner w-full flex items-center justify-between">
-        {/* header logo */}
+    <header className="bg-white dark:bg-bgDarkMode h-20 px-6 fixed w-full top-0 left-0 flex shadow-sm  justify-center z-50 border-b border-[#eaecef]">
+      <div className=" w-full flex items-center justify-between">
         <div className="flex flex-1">
-          <img src={images.logo} alt="Binance" />
-          {/* header search popper */}
-          <Tippy
-            placement="bottom"
-            interactive
-            // visible={false}
-            render={(attrs) => (
-              <div className="box w-[418px]" tabIndex="-1" {...attrs}>
-                <PopperWrapper>
-                  <div className="mt-4">
-                    <h4 className="flex text-xs items-center text-textColor mb-2 px-4">
-                      <span>Trending</span>
-                      <FireIcon className={'text-red-500 ml-1'} />
-                    </h4>
-                    <NFTItems />
-                    <NFTItems />
-                    <NFTItems />
-                    <NFTItems />
-                  </div>
-                </PopperWrapper>
-              </div>
-            )}
-          >
-            {/* header search */}
-            <div className="mx-8 flex h-10 items-center rounded-3xl border-2 border-yellow-500 ">
-              <button className="shrink-0 block ml-4 text-gray-600 ">{<SearchIcon />}</button>
-              <StraightBrick className={'h-[18px] ml-3 mr-0'} />
-              <input
-                placeholder="Search"
-                className="w-80 flex-1 h-full outline-none pl-1 pr-4 text-base text-textColor "
-              />
-              <button className="text-[#B7BDC6] pr-5">
-                <FontAwesomeIcon icon={faCircleXmark} />
-              </button>
-            </div>
-          </Tippy>
+          {/* header logo */}
+          <Link to={routesConfig.home} className="flex select-none">
+            <img src={images.logo} alt="Binance" />
+          </Link>
+          {/* header search*/}
+          <Search />
+
           {/* header Ranking */}
           <div className="flex">
             <Button text>Rankings</Button>
@@ -84,24 +89,32 @@ function Header() {
         </div>
         {/* header action */}
         <div className="flex items-center">
-          {/* header login */}
-          <Button text>Log In</Button>
-          {/* header register */}
-          <Button primary className={'mx-3'}>
-            Register
-          </Button>
+          {isLogin ? (
+            <>
+              {/* header account */}
+              <div className="mr-2 dark:text-textDarkMode">
+                <MenuAccount items={menuAccountItem}>
+                  <button className="text-base ml-1 flex hover:text-[#c99400]">
+                    <FontAwesomeIcon icon={faUser} />
+                  </button>
+                </MenuAccount>
+              </div>
+            </>
+          ) : (
+            <>
+              {/* header login */}
+              <Button text>Log In</Button>
+              {/* header register */}
+              <Button primary className={'mx-3 dark:text-textColor'}>
+                Register
+              </Button>
+            </>
+          )}
           {/* header darkmode */}
           <StraightBrick className={'h-[16px]'} />
-          <button className="ml-1 flex">{darkMode ? <LightIcon /> : <DarkIcon />}</button>
-          <StraightBrick className={'h-[16px]'} />
-          {/* header account */}
-          <div>
-            <MenuAccount items={menuAccountItem}>
-              <button className="text-base ml-1 flex">
-                <FontAwesomeIcon icon={faUser} />
-              </button>
-            </MenuAccount>
-          </div>
+          <button onClick={handleDarkModeSwitch} className="ml-1 flex">
+            {darkMode === 'dark' ? <LightIcon /> : <DarkIcon />}
+          </button>
         </div>
       </div>
     </header>

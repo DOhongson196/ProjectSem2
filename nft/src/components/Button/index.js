@@ -9,8 +9,8 @@ function Button({
   className,
   disabled = false,
   onClick,
-  leftIcon,
-  rightIcon,
+  leftIcon = false,
+  rightIcon = false,
   ...passProps
 }) {
   let Comp = 'button';
@@ -37,14 +37,14 @@ function Button({
 
   const styleDisabled = disabled ? 'pointer-events-none opacity-50' : '';
   const stylePrimary = primary ? 'bg-primary hover:opacity-90 rounded' : '';
-  const styleText = text ? ' hover:text-[#c99400]' : '';
+  const styleText = text ? ' hover:text-[#c99400] dark:hover:text-[#c99400]' : '';
 
-  const classes = `text-base font-semibold py-1.5 px inline-flex items-center text-center leading-5 select-none text-[#1E2329] ${stylePrimary} ${styleText} ${styleDisabled} ${className} `;
+  const classes = `text-base font-semibold py-1.5 px-4 inline-flex items-center text-center leading-5 select-none text-textColor dark:text-textDarkMode group ${stylePrimary} ${styleText} ${styleDisabled} ${className} `;
   return (
     <Comp className={classes} {...props}>
-      <span className="mr-2 inline-flex w-5">{leftIcon}</span>
+      {leftIcon && <span className="mr-2 inline-flex w-5 group-hover:text-[#c99400]">{leftIcon}</span>}
       <span>{children}</span>
-      <span className="ml-2 inline-flex w-5">{rightIcon}</span>
+      {rightIcon && <span className="ml-2 inline-flex w-5 group-hover:text-[#c99400]">{rightIcon}</span>}
     </Comp>
   );
 }
