@@ -106,3 +106,39 @@ export const MailIcon = ({ width = '1.2rem', height = '1.2rem', className }) => 
     ></path>
   </svg>
 );
+
+export const LeftIcon = ({ width = '1.4rem', height = '1.4rem', className }) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <path
+      fill="#5e6673"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M11.934 12l3.89 3.89-1.769 1.767L8.398 12l1.768-1.768 3.89-3.889 1.767 1.768-3.889 3.89z"
+    ></path>
+  </svg>
+);
+
+export const RightIcon = ({ width = '1.4rem', height = '1.4rem', className }) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <path
+      fill="#5e6673"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M12.288 12l-3.89 3.89 1.768 1.767L15.823 12l-1.768-1.768-3.889-3.889-1.768 1.768 3.89 3.89z"
+    ></path>
+  </svg>
+);

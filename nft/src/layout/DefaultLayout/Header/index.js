@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import images from '../../../assets/images';
 import { DarkIcon, LightIcon } from '../../../components/Icons';
 import Button from '../../../components/Button';
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import StraightBrick from '../../../components/Brick';
 import MenuAccount from '../../../components/Popper/MenuAccount';
 import routesConfig from '../../../config/routes';
 import Search from './Search';
 import { Link } from 'react-router-dom';
+import { DarkModeContext } from '../../../hooks/ThemeContext';
 
 const menuAccountItem = [
   {
@@ -41,34 +42,7 @@ const menuAccountItem = [
 
 function Header() {
   const isLogin = true;
-  const [darkMode, setDarkMode] = useState('light');
-
-  useEffect(() => {
-    if (localStorage.getItem('theme') === null) {
-      localStorage.setItem('theme', 'light');
-    }
-  }, []);
-
-  useEffect(() => {
-    const html = document.querySelector('html');
-    if (localStorage.getItem('theme') === 'dark') {
-      html.classList.add('dark');
-      setDarkMode('dark');
-    } else {
-      html.classList.remove('dark');
-      setDarkMode('light');
-    }
-  }, [darkMode]);
-
-  const handleDarkModeSwitch = () => {
-    if (localStorage.getItem('theme') === 'light') {
-      setDarkMode('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      setDarkMode('light');
-      localStorage.setItem('theme', 'light');
-    }
-  };
+  const context = useContext(DarkModeContext);
 
   return (
     <header className="bg-white dark:bg-bgDarkMode h-20 px-6 fixed w-full top-0 left-0 flex shadow-sm  justify-center z-50 border-b border-[#eaecef]">
@@ -112,8 +86,8 @@ function Header() {
           )}
           {/* header darkmode */}
           <StraightBrick className={'h-[16px]'} />
-          <button onClick={handleDarkModeSwitch} className="ml-1 flex">
-            {darkMode === 'dark' ? <LightIcon /> : <DarkIcon />}
+          <button onClick={context.handleDarkModeSwitch} className="ml-1 flex">
+            {context.darkMode === 'dark' ? <LightIcon /> : <DarkIcon />}
           </button>
         </div>
       </div>

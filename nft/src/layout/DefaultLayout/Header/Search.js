@@ -7,6 +7,8 @@ import NFTItems from './NFTItems';
 import StraightBrick from '../../../components/Brick';
 import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '../../../hooks';
+import { Link } from 'react-router-dom';
+import routesConfig from '../../../config/routes';
 
 function Search() {
   const [searchValue, setSearchValue] = useState('');
@@ -66,7 +68,9 @@ function Search() {
       >
         {/* header search */}
         <div className="relative mx-8 flex h-10 items-center rounded-3xl border-2 border-yellow-500 overflow-hidden ">
-          <button className="shrink-0 block ml-4 text-[#B7BDC6] dark:text-[#5e6673] ">{<SearchIcon />}</button>
+          <Link to={routesConfig.search} className="flex select-none">
+            <button className="shrink-0 block ml-4 text-[#B7BDC6] dark:text-[#5e6673] ">{<SearchIcon />}</button>
+          </Link>
           <StraightBrick className={'h-[18px] ml-3 mr-0'} />
           <input
             onFocus={() => setShowResult(true)}
