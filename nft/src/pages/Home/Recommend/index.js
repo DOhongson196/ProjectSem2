@@ -8,10 +8,15 @@ function Recommend() {
       </div>
       <div className="grid grid-cols-3 grid-rows-2 gap-x-6 gap-y-4 px-3">
         <RecommendItem />
+
         <RecommendItem />
+
         <RecommendItem />
+
         <RecommendItem />
+
         <RecommendItem />
+
         <RecommendItem />
       </div>
     </div>

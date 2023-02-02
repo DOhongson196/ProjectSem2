@@ -9,7 +9,7 @@ import MenuAccount from '../../../components/Popper/MenuAccount';
 import routesConfig from '../../../config/routes';
 import Search from './Search';
 import { Link } from 'react-router-dom';
-import { DarkModeContext } from '../../../hooks/ThemeContext';
+import { DarkModeContext } from '../../../hooks';
 
 const menuAccountItem = [
   {

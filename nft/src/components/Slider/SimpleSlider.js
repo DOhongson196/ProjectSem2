@@ -21,15 +21,17 @@ function SamplePrevArrow(props) {
   );
 }
 
-function SimpleSlider({ autoplay = false, dots = false, slidesToShow = 1, slidesToScroll = 1, children }) {
+function SimpleSlider({ autoplay = false, dots = false, infinite = false, slidesPerRow = 1, rows = 1, children }) {
   const settings = {
     dots,
-    infinite: true,
+    infinite,
     fade: true,
+    rows: rows,
+    slidesPerRow: slidesPerRow,
     autoplay,
     speed: 500,
-    slidesToShow: slidesToShow,
-    slidesToScroll: slidesToScroll,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     autoplaySpeed: 5000,
     cssEase: 'linear',
     prevArrow: <SamplePrevArrow />,
