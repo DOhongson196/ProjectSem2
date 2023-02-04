@@ -2,7 +2,7 @@ import RecommendItem from './RecommendItem';
 
 function Recommend() {
   return (
-    <div className="flex relative flex-col max-w-screen-xl mt-14 mx-auto w-full">
+    <div className="flex relative flex-col max-w-screen-xl mt-14 mx-auto">
       <div className=" text-textColor  dark:text-textDarkMode my-10 text-3xl font-semibold">
         Recommended collections
       </div>

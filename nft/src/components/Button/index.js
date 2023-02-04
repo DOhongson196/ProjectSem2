@@ -43,7 +43,7 @@ function Button({
   return (
     <Comp className={classes} {...props}>
       {leftIcon && <span className="mr-2 inline-flex w-5 group-hover:text-[#c99400]">{leftIcon}</span>}
-      <span>{children}</span>
+      <span className="flex items-center">{children}</span>
       {rightIcon && <span className="ml-2 inline-flex w-5 group-hover:text-[#c99400]">{rightIcon}</span>}
     </Comp>
   );

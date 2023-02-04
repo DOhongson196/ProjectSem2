@@ -41,7 +41,7 @@ const menuAccountItem = [
 ];
 
 function Header() {
-  const isLogin = true;
+  const isLogin = false;
   const context = useContext(DarkModeContext);
 
   return (
@@ -77,11 +77,15 @@ function Header() {
           ) : (
             <>
               {/* header login */}
-              <Button text>Log In</Button>
+              <Link to={routesConfig.login} className="flex">
+                <Button text>Log In</Button>
+              </Link>
               {/* header register */}
-              <Button primary className={'mx-3 dark:text-textColor'}>
-                Register
-              </Button>
+              <Link to={routesConfig.register} className="flex">
+                <Button primary className={'mx-3 dark:text-textColor'}>
+                  Register
+                </Button>
+              </Link>
             </>
           )}
           {/* header darkmode */}
