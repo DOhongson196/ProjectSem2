@@ -6,6 +6,7 @@ const routes = {
   profile: '/profile',
   register: '/register',
   login: '/login',
+  ranking: '/rankings',
 };
 
 export default routes;

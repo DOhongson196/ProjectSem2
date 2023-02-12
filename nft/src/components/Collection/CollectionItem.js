@@ -1,7 +1,7 @@
-import Button from '../../../components/Button';
-import { CheckIcon } from '../../../components/Icons';
+import Button from '../../components/Button';
+import { CheckIcon } from '../../components/Icons';
 
-function ContentItems() {
+function CollectionItem() {
   const validIcon = true;
   const uptrend = true;
   return (
@@ -57,4 +57,4 @@ function ContentItems() {
   );
 }
 
-export default ContentItems;
+export default CollectionItem;

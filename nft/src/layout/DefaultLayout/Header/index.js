@@ -57,8 +57,10 @@ function Header() {
 
           {/* header Ranking */}
           <div className="flex">
-            <Button text>Rankings</Button>
-            <Button text>Activities</Button>
+            <Link to={routesConfig.ranking} className="flex select-none">
+              <Button text>Rankings</Button>
+            </Link>
+            <Button text>Explore</Button>
           </div>
         </div>
         {/* header action */}

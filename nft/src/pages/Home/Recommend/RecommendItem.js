@@ -4,12 +4,12 @@ import { CheckIcon } from '../../../components/Icons';
 function RecommendItem() {
   return (
     <Link>
-      <div className="relative cursor-pointer shadow-lg ease-in-out duration-300 hover:translate-y-[-4px] hover:shadow-2xl">
+      <div className="relative cursor-pointer shadow-lg ease-in-out rounded-xl duration-300 hover:translate-y-[-4px] hover:shadow-2xl overflow-hidden">
         {/* background image */}
         <div className="relative w-full h-32">
           <div className="object-cover w-full h-full">
             <img
-              className="w-full h-full rounded-xl object-cover"
+              className="w-full h-full  object-cover"
               src="https://public.nftstatic.com/static/nft/zipped/6ca340e31a894a40a05082e61247a2c1_zipped.png"
               alt=""
             />
@@ -32,11 +32,11 @@ function RecommendItem() {
         {/* content */}
         <div className="mt-4 flex pb-3 px-3 justify-between items-center">
           <div className="flex items-center">
-            <div className="dark:text-[#b7bdc6] text-xs mr-2">Volume</div>
+            <div className="text-[#707a8a] dark:text-[#b7bdc6] text-xs mr-2">Volume</div>
             <div className="text-sm font-bold dark:text-[#eaecef]">555,935.23 USD</div>
           </div>
           <div className="flex items-center">
-            <div className="dark:text-[#b7bdc6] text-xs mr-2">Floor Price</div>
+            <div className="text-[#707a8a] dark:text-[#b7bdc6] text-xs mr-2">Floor Price</div>
             <div className="text-sm font-bold dark:text-[#eaecef]">5.33 USD</div>
           </div>
         </div>
