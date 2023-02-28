@@ -7,6 +7,7 @@ const routes = {
   register: '/register',
   login: '/login',
   ranking: '/rankings',
+  nftdetail: '/nftdetail',
 };
 
 export default routes;
