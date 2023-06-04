@@ -2,8 +2,6 @@ import Button from '../../components/Button';
 import { CheckIcon } from '../../components/Icons';
 
 function CollectionItem() {
-  const validIcon = true;
-  const uptrend = true;
   return (
     <div>
       <div className="relative cursor-pointer rounded-xl group flex w-full h-[78px] font-normal text-base items-center text-textColor dark:text-[#eaecef] hover:bg-[#f5f5f5] hover:scale-105 ease-in-out duration-300 dark:hover:bg-[#2b3139]">
@@ -25,24 +23,20 @@ function CollectionItem() {
               <span className="text-base font-semibold text-[#1e2329] dark:text-textDarkMode text-ellipsis">
                 The CR7 NFT Collection
               </span>
-              {validIcon ? <CheckIcon className={'text-[#f0b90b] ml-2'} /> : null}
+              <CheckIcon className={'text-[#f0b90b] ml-2'} />
             </div>
           </div>
         </div>
         {/* volume */}
-        <div className="flex flex-col  items-end w-[175px] mr-48">
-          <div>729.47 ETH</div>
-          {uptrend ? <div className="text-[#0ecb81]">+8.40%</div> : <div className="text-[#F6465D]">-8.40%</div>}
+        <div className="flex flex-col  items-end justify-center w-[175px] mr-48">
+          <div>100</div>
         </div>
         {/* floor price */}
-        <div className="flex items-end flex-col w-[165px] mr-20">
-          <div>2.35 ETH</div>
-          {uptrend ? <div className="text-[#0ecb81]">+3.40%</div> : <div className="text-[#F6465D]">-3.40%</div>}
+        <div className="flex items-end justify-center flex-col w-[165px] mr-20">
+          <div>100</div>
         </div>
-        {/* Owners */}
-        <div className="flex items-end w-[100px] group-hover:hidden">27</div>
-        {/* Items */}
-        <div className="flex flex-1 items-center w-[100px] justify-start group-hover:hidden">24.657</div>
+        {/* price */}
+        <div className="flex items-end justify-end w-[200px] group-hover:hidden">200 USD</div>
         {/* Button */}
         <Button
           primary

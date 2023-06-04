@@ -32,11 +32,11 @@ function RecommendItem() {
         {/* content */}
         <div className="mt-4 flex pb-3 px-3 justify-between items-center">
           <div className="flex items-center">
-            <div className="text-[#707a8a] dark:text-[#b7bdc6] text-xs mr-2">Volume</div>
-            <div className="text-sm font-bold dark:text-[#eaecef]">555,935.23 USD</div>
+            <div className="text-[#707a8a] dark:text-[#b7bdc6] text-xs mr-2">Buying Volume:</div>
+            <div className="text-sm font-bold dark:text-[#eaecef]">240</div>
           </div>
           <div className="flex items-center">
-            <div className="text-[#707a8a] dark:text-[#b7bdc6] text-xs mr-2">Floor Price</div>
+            <div className="text-[#707a8a] dark:text-[#b7bdc6] text-xs mr-2">Price:</div>
             <div className="text-sm font-bold dark:text-[#eaecef]">5.33 USD</div>
           </div>
         </div>

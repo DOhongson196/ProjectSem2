@@ -16,7 +16,7 @@ function HomeContent() {
       <Button
         to={routesConfig.ranking}
         text
-        className={'absolute right-0 bottom-[-35px] text-textColor  dark:text-textDarkMode'}
+        className={'absolute right-[-20px] bottom-[-35px] text-textColor  dark:text-textDarkMode'}
         rightIcon={<FontAwesomeIcon icon={faArrowRight} />}
       >
         More

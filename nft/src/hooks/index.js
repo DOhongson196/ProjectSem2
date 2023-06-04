@@ -1,2 +1,2 @@
 export { default as useDebounce } from './useDebounce';
-export { DarkModeContext, DarkModeProvider } from './ThemeContext';
+export { default as useAxios } from './useAxios';

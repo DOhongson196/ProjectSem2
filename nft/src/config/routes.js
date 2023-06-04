@@ -1,6 +1,6 @@
 const routes = {
   home: '/',
-  search: 'search',
+  search: '/search',
   explore: '/explore',
   logine: '/login',
   profile: '/profile',
@@ -8,6 +8,9 @@ const routes = {
   login: '/login',
   ranking: '/rankings',
   nftdetail: '/nftdetail',
+  cart: '/cart',
+  checkout: '/checkout',
+  notFound: '/*',
 };
 
 export default routes;

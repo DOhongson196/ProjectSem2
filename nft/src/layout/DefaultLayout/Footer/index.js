@@ -9,26 +9,26 @@ function Footer() {
     <div className="px-32 pt-12 w-full bg-[#FAFAFA] dark:bg-[#0b0e11] text-base font-normal text-[#707a8a] dark:text-[#848e9c] leading-5 ">
       <div className="flex">
         <div className="w-[25%] pb-6">
-          <img className="mt-9 select-none" src={images.logo} alt="Binance" />
+          <img className="mt-9 select-none" src={images.logo} alt="Wibuuu" />
           <div className=" w-5/6 mt-7">Please contact us if you have any specific idea or request.</div>
           <div className="flex items-center   ">
             <MailIcon />
-            <div className="underline ml-2">nft@binance.com</div>
+            <div className="underline ml-2">wibu@gmail.com</div>
           </div>
         </div>
         <div className="w-3/5 pb-6 flex">
           <div className="w-1/4">
             <FooterItem heading>About Us</FooterItem>
-            <FooterItem content>About Binance</FooterItem>
+            <FooterItem content>About Wibuuu</FooterItem>
             <FooterItem content>Careers</FooterItem>
-            <FooterItem content>Binance Blog</FooterItem>
+            <FooterItem content>Wibuuu Blog</FooterItem>
             <FooterItem content>Community</FooterItem>
             <FooterItem content>Terms</FooterItem>
           </div>
           <div className="w-1/4">
             <FooterItem heading>Products</FooterItem>
             <FooterItem content>Exchange</FooterItem>
-            <FooterItem content>Binance Charity Foundation</FooterItem>
+            <FooterItem content>Wibuuu Charity Foundation</FooterItem>
             <FooterItem content>Academy</FooterItem>
           </div>
           <div className="w-1/4">
@@ -59,7 +59,7 @@ function Footer() {
         </div>
       </div>
       <div className="w-full py-6">
-        <div className="text-center text-xs">Binance © 2023</div>
+        <div className="text-center text-xs">©2023 dohongson196.com. All rights reserved</div>
       </div>
     </div>
   );

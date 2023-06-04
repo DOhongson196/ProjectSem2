@@ -3,13 +3,13 @@ import { DarkIcon, LightIcon } from '../../components/Icons';
 import { useContext } from 'react';
 import routesConfig from '../../config/routes';
 import { Link } from 'react-router-dom';
-import { DarkModeContext } from '../../hooks';
+import { DarkModeContext } from '../../context';
 
 function DefaultLayout({ children }) {
   const context = useContext(DarkModeContext);
   return (
     <div>
-      <header className="bg-white dark:bg-bgDarkMode h-20 px-6 w-full  flex shadow-sm  justify-center z-50 border-b border-[#eaecef]">
+      <header className="bg-white dark:bg-bgDarkMode h-20 px-48 w-full  flex shadow-sm  justify-center z-50 border-b border-[#eaecef]">
         <div className=" w-full flex items-center justify-between">
           <div className="flex flex-1">
             {/* header logo */}
@@ -27,7 +27,7 @@ function DefaultLayout({ children }) {
       </header>
       <div>{children}</div>
       <div className="flex bg-[#FFFFFF] dark:bg-bgDarkMode items-center justify-center text-[#474d57] dark:text-[#b7bdc6]">
-        <div className="text-xs text-center px-4 py-3">© 2017 - 2023 Binance.com. All rights reserved</div>
+        <div className="text-xs text-center px-4 py-3">©2023 dohongson196.com. All rights reserved</div>
       </div>
     </div>
   );
