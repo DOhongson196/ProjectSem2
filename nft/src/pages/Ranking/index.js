@@ -1,4 +1,5 @@
 import { CollectionItem, CollectionMenu, NFTItem } from '../../components/Collection';
+import NFTDetail from '../NFTDetail';
 
 function Ranking() {
   return (
@@ -7,6 +8,8 @@ function Ranking() {
         <div className=" text-textColor font-semibold  dark:text-textDarkMode my-10 text-3xl">Ranking Collections</div>
         <CollectionMenu />
         <CollectionItem />
+        <NFTItem/>
+        <NFTDetail/>
       </div>
     </div>
   );

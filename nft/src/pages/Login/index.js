@@ -8,10 +8,10 @@ import FormLogin from './FormLogin';
 function Login() {
   return (
     <div className="flex min-h-[87.2vh] flex-col bg-[#FFFFFF] dark:bg-bgDarkMode">
-      <div className="flex mt-14 mx-auto w-full items-center justify-center">
+      <div className="flex mt-10 mx-auto w-full items-center justify-center">
         <div className="flex flex-col p-8  w-[440px] shadow-xl text-sm rounded-xl  text-textColor  dark:text-textDarkMode ">
           {/* heading */}
-          <div className="  my-10 text-3xl font-semibold">Binance Login</div>
+          <div className="  my-10 text-3xl font-semibold">Incredible Login</div>
           {/* input */}
           <FormLogin />
           {/* or */}
@@ -31,7 +31,7 @@ function Login() {
           </Button>
           <Link to={routesConfig.register}>
             <div className="text-[#c99400] dark:text-[#f0b90b] cursor-pointer mt-6 font-semibold hover:text-primary hover:underline">
-              Create a Binance Account
+              Create a Incredible Account
             </div>
           </Link>
         </div>

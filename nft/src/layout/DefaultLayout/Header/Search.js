@@ -43,7 +43,7 @@ function Search() {
   };
 
   return (
-    <div>
+    <div className='flex items-center'>
       <Tippy
         placement="bottom"
         interactive

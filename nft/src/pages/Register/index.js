@@ -8,11 +8,11 @@ import FormRegister from './FormRegister';
 function Register() {
   return (
     <div className="flex min-h-[87.2vh] flex-col bg-[#FFFFFF] dark:bg-bgDarkMode">
-      <div className="flex mt-4 mx-auto w-full items-center justify-center">
+      <div className="flex mt-8 mx-auto w-full items-center justify-center">
         <div className="flex p-8  w-[1000px] shadow-xl text-sm rounded-xl  text-textColor  dark:text-textDarkMode ">
           <div className="w-[390px] mr-16">
             {/* heading */}
-            <div className="  my-10 text-3xl font-semibold">Welcome to Binance!</div>
+            <div className="  my-10 text-3xl font-semibold">Welcome to Incredible!</div>
             {/* input */}
             <FormRegister />
             {/* or */}
