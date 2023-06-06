@@ -1,35 +1,87 @@
-function FormCheckOut() {
+import { Link } from 'react-router-dom';
+import { routesConfig } from '../../config';
+import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import Button from '../../components/Button';
+
+function FormCheckOut({ setFormValue, setValid }) {
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+  const schema = yup
+    .object({
+      email: yup.string().required('Email is required').email('Email is not valid'),
+      phone: yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Phone is required'),
+      customerName: yup.string().min(4).max(30).required('Password is required'),
+      address: yup.string().min(8).max(30).required('Confirm Password is required'),
+    })
+    .required();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const handleLoginForm = (data) => {
+    setFormValue(data);
+    setValid(true);
+  };
+
   return (
-    <form className="mt-4 text-textColor  dark:text-textDarkMode text-sm">
-      {/* fullname */}
-      <div>
-        <label className="font-normal cursor-text">FullName</label>
-        <div className="relative mt-1 w-11/12 leading-4 h-10 rounded border border-[#B7BDC6] dark:border-[#474d57] hover:border-[#c99400] dark:hover:border-primary mb-5 ">
-          <input className="w-full h-full px-3 outline-none bg-transparent mb-[2px]" />
+    <>
+      <form className="mt-4 text-textColor dark:text-textDarkMode text-sm" onSubmit={handleSubmit(handleLoginForm)}>
+        {/* fullname */}
+        <div>
+          <label className="font-normal cursor-text">FullName</label>
+          <div className="relative mt-1 w-11/12 leading-4 h-10 rounded border border-[#B7BDC6]  hover:border-[#c99400]  mb-5 ">
+            <input className="w-full h-full px-3 outline-none bg-transparent mb-[2px]" {...register('customerName')} />
+            <small className="text-[#F6465D]"> {errors.customerName?.message}</small>
+          </div>
         </div>
-      </div>
-      {/* Email */}
-      <div>
-        <label className="font-normal cursor-text">Email</label>
-        <div className="relative mt-1 w-11/12 leading-4 h-10 rounded border border-[#B7BDC6] dark:border-[#474d57] hover:border-[#c99400] dark:hover:border-primary mb-5 ">
-          <input className="w-full h-full px-3 outline-none bg-transparent mb-[2px]" />
+        {/* Email */}
+        <div>
+          <label className="font-normal cursor-text">Email</label>
+          <div className="relative mt-1 w-11/12 leading-4 h-10 rounded border border-[#B7BDC6]  hover:border-[#c99400]  mb-5 ">
+            <input className="w-full h-full px-3 outline-none bg-transparent mb-[2px]" {...register('email')} />
+            <small className="text-[#F6465D]"> {errors.email?.message}</small>
+          </div>
         </div>
-      </div>
-      {/* phone */}
-      <div>
-        <label className="font-normal cursor-text">Phone Number</label>
-        <div className="relative mt-1 w-11/12 leading-4 h-10 rounded border border-[#B7BDC6] dark:border-[#474d57] hover:border-[#c99400] dark:hover:border-primary mb-5 ">
-          <input className="w-full h-full px-3 outline-none bg-transparent mb-[2px]" />
+        {/* phone */}
+        <div>
+          <label className="font-normal cursor-text">Phone Number</label>
+          <div className="relative mt-1 w-11/12 leading-4 h-10 rounded border border-[#B7BDC6]  hover:border-[#c99400]  mb-5 ">
+            <input className="w-full h-full px-3 outline-none bg-transparent mb-[2px]" {...register('phone')} />
+            <small className="text-[#F6465D]"> {errors.phone?.message}</small>
+          </div>
         </div>
-      </div>
-      {/* address */}
-      <div>
-        <label className="font-normal cursor-text">Address</label>
-        <div className="relative mt-1 w-11/12 leading-4 h-10 rounded border border-[#B7BDC6] dark:border-[#474d57] hover:border-[#c99400] dark:hover:border-primary mb-5 ">
-          <input className="w-full h-full px-3 outline-none bg-transparent mb-[2px]" />
+        {/* address */}
+        <div>
+          <label className="font-normal cursor-text">Address</label>
+          <div className="relative mt-1 w-11/12 leading-4 h-10 rounded border border-[#B7BDC6]  hover:border-[#c99400]  mb-5 ">
+            <input className="w-full h-full px-3 outline-none bg-transparent mb-[2px]" {...register('address')} />
+            <small className="text-[#F6465D]"> {errors.address?.message}</small>
+          </div>
         </div>
-      </div>
-    </form>
+        <Button
+          primary
+          className={'w-11/12 justify-center items-center whitespace-nowrap h-12 py-[6px] dark:text-textColor my-6'}
+        >
+          Method Payment
+        </Button>
+      </form>
+
+      {/* back to cart */}
+      <span className="text-[#d0980b] decoration-solid underline text-lg font-medium italic">
+        <Link to={routesConfig.cart}>
+          <FontAwesomeIcon icon={faArrowLeftLong} className="mr-1" />
+          Back to cart
+        </Link>
+      </span>
+    </>
   );
 }
 

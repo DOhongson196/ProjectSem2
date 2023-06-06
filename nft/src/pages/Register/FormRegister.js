@@ -3,27 +3,28 @@ import Button from '../../components/Button';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
-const schema = yup
-  .object({
-    email: yup.string().required('Email is required').email('Email is not valid'),
-    phone: yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Phone is required'),
-    password: yup.string().min(4).max(16).required('Password is required'),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref('password'), null], 'Confirm Password must match')
-      .required('Confirm Password is required'),
-  })
-  .required();
-
 function FormRegister() {
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+  const schema = yup
+    .object({
+      email: yup.string().required('Email is required').email('Email is not valid'),
+      phone: yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Phone is required'),
+      password: yup.string().min(4).max(16).required('Password is required'),
+      confirmPassword: yup
+        .string()
+        .oneOf([yup.ref('password'), null], 'Confirm Password must match')
+        .required('Confirm Password is required'),
+    })
+    .required();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
   const handleLoginForm = (data) => {};
 
   return (

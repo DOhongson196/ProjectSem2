@@ -20,7 +20,7 @@ const publicRoutes = [
   { path: routesConfig.search, component: Search },
   { path: routesConfig.explore, component: Explore },
   { path: routesConfig.login, component: Login, layout: HeaderOnly },
-  { path: routesConfig.profile, component: Profile, layout: null },
+  { path: routesConfig.profile, component: Profile },
   { path: routesConfig.register, component: Register, layout: HeaderOnly },
   { path: routesConfig.ranking, component: Ranking },
   { path: routesConfig.nftdetail, component: NFTDetail },
