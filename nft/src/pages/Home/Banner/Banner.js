@@ -16,7 +16,7 @@ function HomeBanner() {
       </div>
       {/* slider */}
       <div className="w-[518px] h-[290px] mr-10">
-        <SimpleSlider dots autoplay infinite>
+        <SimpleSlider dots autoplay infinite fade>
           <SlideItem src={images.slide1} />
           <SlideItem src={images.slide3} />
           <SlideItem src={images.slide2} />

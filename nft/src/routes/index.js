@@ -24,8 +24,8 @@ const publicRoutes = [
   { path: routesConfig.register, component: Register, layout: HeaderOnly },
   { path: routesConfig.ranking, component: Ranking },
   { path: routesConfig.nftdetail, component: NFTDetail },
-  { path: routesConfig.cart, component: Cart },
   { path: routesConfig.notFound, component: NotFound },
+  { path: routesConfig.cart, component: Cart },
   { path: routesConfig.checkout, component: Checkout, layout: HeaderOnly },
 ];
 
