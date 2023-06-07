@@ -81,7 +81,7 @@ function MethodPayment({ formValue, setValid }) {
           </div>
         )}
       </div>
-      <button className="text-[#d0980b] decoration-solid underline text-lg font-medium italic" onClick={handleBack}>
+      <button className="text-[#d0980b] decoration-solid underline text-lg font-medium italic mt-4" onClick={handleBack}>
         <FontAwesomeIcon icon={faArrowLeftLong} className="mr-1" />
         Back to CheckOut
       </button>

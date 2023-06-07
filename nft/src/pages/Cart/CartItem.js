@@ -3,13 +3,16 @@ import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function CartItem() {
+  const handleRemove = () => {
+    
+  }
   return (
     <div>
       <div className="relative rounded-xl flex w-full h-[78px] font-normal text-base items-center text-textColor dark:text-[#eaecef]">
         {/* info */}
         <div className="flex items-center w-[480px] justify-start pl-2">
           {/* delete */}
-          <button className="text-[#B7BDC6] dark:text-[#848e9c]">
+          <button className="text-[#B7BDC6] dark:text-[#848e9c]" onClick={handleRemove}>
             <FontAwesomeIcon icon={faXmarkCircle} />
           </button>
           {/* logo */}

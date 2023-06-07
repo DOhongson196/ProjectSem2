@@ -7,6 +7,7 @@ const images = {
   slide1: require('./homeSlide1.jpg'),
   slide2: require('./homeSlide2.jpg'),
   slide3: require('./homeSlide3.jpg'),
+  anh1: require('./anh1.jpg'),
 };
 
 export default images;

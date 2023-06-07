@@ -20,6 +20,20 @@ function NFTItems() {
         <div className="font-normal leading-4 text-xs text-[#707a8a]">1,570,837 items</div>
       </div>
     </div>
+
+    // <div class="rounded-md p-3 max-w-sm w-[300px]">
+    //   <div class="animate-pulse flex space-x-4">
+    //     <div class="rounded-full bg-slate-300 dark:bg-slate-500 h-8 w-8"></div>
+    //     <div class="flex-1 space-y-3 py-1">
+    //       <div class="h-2 bg-slate-300 dark:bg-slate-500 rounded"></div>
+    //       <div class="space-y-2">
+    //         <div class="grid grid-cols-3 gap-4">
+    //           <div class="h-2 bg-slate-300 dark:bg-slate-500 rounded col-span-2"></div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 

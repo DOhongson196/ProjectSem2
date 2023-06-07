@@ -8,9 +8,9 @@ function HomeBanner() {
       {/* content */}
       <div className="flex flex-col max-w-[600px] mr-14">
         <div className="leading-[56px] text-[48px] font-black ">
-          <div className="bg-clip-text bg-text-gradient text-transparent bg-text-bgsize">Incredible NFT -</div>
-          <div className="bg-clip-text bg-text-gradient text-transparent bg-text-bgsize"> Diversity, Security, </div>
-          <div className="bg-clip-text bg-text-gradient text-transparent bg-text-bgsize"> and Reliability </div>
+          <div className="bg-clip-text bg-text-gradient text-transparent bg-text-bgsize">Incredible -</div>
+          <div className="bg-clip-text bg-text-gradient text-transparent bg-text-bgsize"> Get the best price, </div>
+          <div className="bg-clip-text bg-text-gradient text-transparent bg-text-bgsize"> on our best frames. </div>
           <div className="text-textColor dark:text-[#ebedf0]"> All in one place</div>
         </div>
       </div>

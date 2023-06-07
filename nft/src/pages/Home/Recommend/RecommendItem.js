@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CheckIconL } from '../../../components/Icons';
+import images from '../../../assets/images';
 
 function RecommendItem() {
   return (
@@ -10,7 +11,7 @@ function RecommendItem() {
           <div className="object-cover w-full h-full">
             <img
               className="w-full h-full object-cover"
-              src="https://w0.peakpx.com/wallpaper/736/818/HD-wallpaper-demon-slayer-anime-sword.jpg"
+              src={images.anh1}
               alt=""
             />
           </div>
@@ -42,6 +43,22 @@ function RecommendItem() {
         </div>
       </div>
     </Link>
+    // <>
+    //   <div class="shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    //     <div class="animate-pulse flex space-x-4">
+    //       <div class="flex-1 space-y-6 py-1">
+    //         <div class="h-[400px] bg-slate-300 dark:bg-slate-500 rounded "></div>
+    //         <div class="space-y-3">
+    //           <div class="grid grid-cols-3 gap-4">
+    //             <div class="h-5 bg-slate-300 dark:bg-slate-500 rounded col-span-1"></div>
+    //             <div class="h-5 bg-slate-300 dark:bg-slate-500 rounded col-span-2"></div>
+    //           </div>
+    //           <div class="h-4 bg-slate-300 dark:bg-slate-500 rounded"></div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </>
   );
 }
 
