@@ -8,7 +8,7 @@ import StraightBrick from '../../../components/Brick';
 import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '../../../hooks';
 import { Link } from 'react-router-dom';
-import routesConfig from '../../../config/routes';
+//import routesConfig from '../../../config/routes';
 
 function Search() {
   const [searchValue, setSearchValue] = useState('');
@@ -43,7 +43,7 @@ function Search() {
   };
 
   return (
-    <div className='flex items-center'>
+    <div className="flex items-center">
       <Tippy
         placement="bottom"
         interactive
@@ -68,7 +68,7 @@ function Search() {
       >
         {/* header search */}
         <div className="relative mx-8 flex h-10 items-center rounded-3xl border-2 border-yellow-500 overflow-hidden ">
-          <Link to={routesConfig.search} className="flex select-none">
+          <Link to={'/search/' + searchValue} className="flex select-none">
             <button className="shrink-0 block ml-4 text-[#B7BDC6] dark:text-[#5e6673] ">{<SearchIcon />}</button>
           </Link>
           <StraightBrick className={'h-[18px] ml-3 mr-0'} />

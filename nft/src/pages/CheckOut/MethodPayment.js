@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../components/Button';
+import { LeftIcon } from '../../components/Icons';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
 function MethodPayment({ formValue, setValid }) {
@@ -81,9 +80,14 @@ function MethodPayment({ formValue, setValid }) {
           </div>
         )}
       </div>
-      <button className="text-[#d0980b] decoration-solid underline text-lg font-medium italic mt-4" onClick={handleBack}>
-        <FontAwesomeIcon icon={faArrowLeftLong} className="mr-1" />
-        Back to CheckOut
+      <button
+        className="text-[#d0980b] decoration-solid underline text-lg font-medium italic mt-4"
+        onClick={handleBack}
+      >
+        <div className="flex">
+          <LeftIcon width="1.5rem" height="1.5rem" className={'fill-[#d0980b]'} />
+          Back to CheckOut
+        </div>
       </button>
     </>
   );

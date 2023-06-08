@@ -1,6 +1,6 @@
 const routes = {
   home: '/',
-  search: '/search',
+  search: '/search/:keyword',
   explore: '/explore',
   logine: '/login',
   profile: '/profile',

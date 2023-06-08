@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { routesConfig } from '../../config';
-import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { LeftIcon } from '../../components/Icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -75,12 +74,12 @@ function FormCheckOut({ setFormValue, setValid }) {
       </form>
 
       {/* back to cart */}
-      <span className="text-[#d0980b] decoration-solid underline text-lg font-medium italic">
-        <Link to={routesConfig.cart}>
-          <FontAwesomeIcon icon={faArrowLeftLong} className="mr-1" />
+      <Link to={routesConfig.cart}>
+        <span className="text-[#d0980b] flex items-center decoration-solid underline text-lg font-medium italic">
+          <LeftIcon width="1.5rem" height="1.5rem" className={'fill-[#d0980b]'} />
           Back to cart
-        </Link>
-      </span>
+        </span>
+      </Link>
     </>
   );
 }

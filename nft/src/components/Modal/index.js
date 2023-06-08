@@ -2,8 +2,8 @@ function Modal({ open, onClose, children }) {
   return (
     <div
       onClick={onClose}
-      className={`fixed inset-0 flex justify-center items-center transition-colors text-[#1e2329] dark:text-textDarkMode ${
-        open ? 'visible bg-black/20' : 'invisible'
+      className={`fixed z-[60] inset-0 flex justify-center items-center transition-colors text-[#1e2329] dark:text-textDarkMode ${
+        open ? 'visible bg-black/30' : 'invisible'
       }`}
     >
       <div

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { CheckIconL } from '../../../components/Icons';
+import { CheckIcon } from '../../../components/Icons';
 import images from '../../../assets/images';
 
 function RecommendItem() {
@@ -25,7 +25,7 @@ function RecommendItem() {
             <span className="text-lg font-semibold text-[#1e2329] dark:text-textDarkMode text-ellipsis">
               The CR7 NFT Collection
             </span>
-            <CheckIconL className={'text-[#f0b90b] ml-2'} />
+            <CheckIcon width="1.2rem" height="1.1rem" className={'text-[#f0b90b] ml-2'} />
           </div>
           {/* content */}
           <div className="pd-4 flex pb-3 px-3 justify-between items-center dark:bg-[#474d57]">
