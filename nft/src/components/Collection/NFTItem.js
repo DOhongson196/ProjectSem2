@@ -2,7 +2,7 @@ import Button from '../Button';
 
 function NFTItem() {
   return (
-    <div className="cursor-pointer w-72 group h-96  shadow-lg bg-white dark:bg-[#1e2329] ease-out rounded-lg transition-all duration-400 hover:translate-y-[-4px] hover:shadow-xl overflow-hidden">
+    <div className="cursor-pointer w-72 group h-96  shadow-xl bg-white dark:bg-[#1e2329] ease-out rounded-xl transition-all duration-400 hover:translate-y-[-4px] hover:shadow-xl overflow-hidden">
       {/* background image */}
       <div className="object-cover w-full h-[288px]">
         <img
@@ -12,7 +12,7 @@ function NFTItem() {
         />
       </div>
       {/* content */}
-      <div className="relative group-hover:-mt-11 bg-white dark:bg-[#1e2329]  flex flex-col p-4 overflow-hidden z-10 transition-all ease-linear duration-300">
+      <div className="relative group-hover:-mt-11 bg-white dark:bg-[#1e2329]  flex flex-col p-4 overflow-hidden z-10 transition-all ease-linear duration-400">
         <div className="text-xs font-semibold dark:text-[#eaecef]">Bored Ape Yacht Club #7305</div>
         <div className="flex flex-col items-center mt-3">
           <div className="flex justify-between w-full ">

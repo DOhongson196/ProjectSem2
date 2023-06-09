@@ -67,8 +67,8 @@ function Search() {
         )}
       >
         {/* header search */}
-        <div className="relative mx-8 flex h-10 items-center rounded-3xl border-2 border-yellow-500 overflow-hidden ">
-          <Link to={'/search/' + searchValue} className="flex select-none">
+        <div className="relative mx-8 flex h-10 items-center rounded-3xl border-2 border-primary overflow-hidden ">
+          <Link to={'/search/keyword=' + searchValue  } className="flex select-none">
             <button className="shrink-0 block ml-4 text-[#B7BDC6] dark:text-[#5e6673] ">{<SearchIcon />}</button>
           </Link>
           <StraightBrick className={'h-[18px] ml-3 mr-0'} />

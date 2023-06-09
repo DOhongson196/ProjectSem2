@@ -91,7 +91,7 @@ function Header() {
             </>
           )}
           {/* header cart */}
-          <StraightBrick className={'h-[16px] '} />
+          <StraightBrick className={'h-[16px]'} />
           <Link className="flex" to={routesConfig.cart}>
             <FontAwesomeIcon icon={faCartShopping} className={'dark:text-textDarkMode hover:text-[#c99400]'} />
           </Link>
