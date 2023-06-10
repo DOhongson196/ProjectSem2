@@ -41,7 +41,7 @@ const menuAccountItem = [
 ];
 
 function Header() {
-  const isLogin = false;
+  const isLogin = true;
   const context = useContext(DarkModeContext);
 
   return (
@@ -50,7 +50,7 @@ function Header() {
         <div className="flex flex-1">
           {/* header logo */}
           <Link to={routesConfig.home} className="flex select-none">
-            <img src={images.logo} alt="Incredible" className='w-[120px] h-[100px]'/>
+            <img src={images.logo} alt="Incredible" className="w-[120px] h-[100px]" />
           </Link>
           {/* header search*/}
           <Search />
