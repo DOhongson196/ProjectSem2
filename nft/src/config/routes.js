@@ -10,6 +10,7 @@ const routes = {
   nftdetail: '/nftdetail',
   cart: '/cart',
   checkout: '/checkout',
+  myorder: '/myorder',
   notFound: '/*',
 };
 

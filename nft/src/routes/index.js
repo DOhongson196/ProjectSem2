@@ -14,6 +14,7 @@ import NFTDetail from '../pages/NFTDetail';
 import Cart from '../pages/Cart';
 import NotFound from '../pages/NotFound';
 import Checkout from '../pages/CheckOut';
+import MyOrder from '../pages/MyOrder';
 
 const publicRoutes = [
   { path: routesConfig.home, component: Home },
@@ -27,6 +28,7 @@ const publicRoutes = [
   { path: routesConfig.notFound, component: NotFound },
   { path: routesConfig.cart, component: Cart },
   { path: routesConfig.checkout, component: Checkout, layout: HeaderOnly },
+  { path: routesConfig.myorder, component: MyOrder}
 ];
 
 const privateRoutes = [];

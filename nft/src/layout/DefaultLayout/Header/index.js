@@ -24,8 +24,8 @@ const menuAccountItem = [
   },
   {
     icon: <FontAwesomeIcon icon={faTags} />,
-    title: 'History',
-    to: '/history',
+    title: 'My Orders',
+    to: '/myorder',
   },
   {
     icon: <FontAwesomeIcon icon={faAddressCard} />,
