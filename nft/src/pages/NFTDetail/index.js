@@ -1,10 +1,4 @@
-import {
-  faCircleExclamation,
-  faCircleInfo,
-  faCircleRadiation,
-  faHeart,
-  faShareNodes,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faCircleRadiation, faHeart, faShareNodes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../../components/Button';
 import { CheckIcon } from '../../components/Icons';
@@ -13,8 +7,8 @@ function NFTDetail() {
   return (
     <div className="flex flex-col mt-20 pb-20 bg-[#FFFFFF] dark:bg-bgDarkMode text-textColor dark:text-textDarkMode">
       <div className="flex relative max-w-screen-xl mx-auto w-full py-16">
-{/* img */}
-<div className="w-[360px] h-[500px] mr-24 rounded-xl overflow-hidden">
+        {/* img */}
+        <div className="w-[360px] h-[500px] mr-24 rounded-xl overflow-hidden">
           <img
             className="w-full h-full object-cover"
             src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1652872355639_m38kzljfloqb8td1xek0aawv4n1r5mf5.png"
@@ -71,37 +65,34 @@ function NFTDetail() {
       </div>
     </div>
 
-
-
-//    <div className="flex flex-col mt-20 pb-20 bg-[#FFFFFF] dark:bg-bgDarkMode text-textColor dark:text-textDarkMode">
-//       <div className="flex relative max-w-screen-xl mx-auto w-full py-16">
-//       <div className="flex flex-col w-full gap-5 p-2 mx-auto select-none sm:p-6 sm:h-[500px] sm:flex-row ">
-//     <div className="bg-slate-300 dark:bg-slate-500 sm:h-full sm:w-[360px] rounded-xl animate-pulse">
-//     </div>
-//     <div className="flex flex-col flex-1 gap-5 sm:p-2">
-//         <div className="flex flex-col flex-1 gap-3">
-//             <div className="w-20 bg-slate-300 dark:bg-slate-500 animate-pulse h-5 rounded-xl">
-//             </div>
-//             <div className="w-[250px] h-8 bg-slate-300 dark:bg-slate-500 animate-pulse rounded-xl">
-//             </div>
-//             <div className="w-[180px] h-5 bg-slate-300 dark:bg-slate-500 animate-pulse rounded-xl">
-//             </div>
-//             <div className="w-20 h-4 bg-slate-300 dark:bg-slate-500 animate-pulse rounded-xl mt-10">
-//             </div>
-//             <div className="w-[250px] h-8 bg-slate-300 dark:bg-slate-500 animate-pulse rounded-xl">
-//             </div>
-//             <div className="w-[250px] h-10 bg-slate-300 dark:bg-slate-500 animate-pulse rounded-xl">
-//             </div>
-//         </div>
-//         <div className="flex gap-3 mt-auto">
-//             <div className="w-full h-32  bg-slate-300 dark:bg-slate-500 rounded-xl animate-pulse">
-//             </div>
-//         </div>
-//     </div>
-// </div>
-//       </div>
-//     </div>
-    
+    //    <div className="flex flex-col mt-20 pb-20 bg-[#FFFFFF] dark:bg-bgDarkMode text-textColor dark:text-textDarkMode">
+    //       <div className="flex relative max-w-screen-xl mx-auto w-full py-16">
+    //       <div className="flex flex-col w-full gap-5 p-2 mx-auto select-none sm:p-6 sm:h-[500px] sm:flex-row ">
+    //     <div className="bg-slate-300 dark:bg-slate-500 sm:h-full sm:w-[360px] rounded-xl animate-pulse">
+    //     </div>
+    //     <div className="flex flex-col flex-1 gap-5 sm:p-2">
+    //         <div className="flex flex-col flex-1 gap-3">
+    //             <div className="w-20 bg-slate-300 dark:bg-slate-500 animate-pulse h-5 rounded-xl">
+    //             </div>
+    //             <div className="w-[250px] h-8 bg-slate-300 dark:bg-slate-500 animate-pulse rounded-xl">
+    //             </div>
+    //             <div className="w-[180px] h-5 bg-slate-300 dark:bg-slate-500 animate-pulse rounded-xl">
+    //             </div>
+    //             <div className="w-20 h-4 bg-slate-300 dark:bg-slate-500 animate-pulse rounded-xl mt-10">
+    //             </div>
+    //             <div className="w-[250px] h-8 bg-slate-300 dark:bg-slate-500 animate-pulse rounded-xl">
+    //             </div>
+    //             <div className="w-[250px] h-10 bg-slate-300 dark:bg-slate-500 animate-pulse rounded-xl">
+    //             </div>
+    //         </div>
+    //         <div className="flex gap-3 mt-auto">
+    //             <div className="w-full h-32  bg-slate-300 dark:bg-slate-500 rounded-xl animate-pulse">
+    //             </div>
+    //         </div>
+    //     </div>
+    // </div>
+    //       </div>
+    //     </div>
   );
 }
 

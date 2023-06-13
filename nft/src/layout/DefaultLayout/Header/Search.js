@@ -8,12 +8,16 @@ import StraightBrick from '../../../components/Brick';
 import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '../../../hooks';
 import { Link } from 'react-router-dom';
+import { API_PRODUCT } from '../../../services/Constant';
+import axios from 'axios';
+import Skeleton from './Skeleton';
 //import routesConfig from '../../../config/routes';
 
 function Search() {
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const debounced = useDebounce(searchValue, 500);
 
@@ -24,9 +28,19 @@ function Search() {
       setSearchResult([]);
       return;
     }
-    setTimeout(() => {
-      setSearchResult([1, 2, 3]);
-    }, 0);
+    setLoading(true);
+    const fectchApi = async () => {
+      try {
+        const response = await axios.get(API_PRODUCT + `/header/find?query=${debounced}`);
+        console.log(response.data);
+        setSearchResult(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    };
+    fectchApi();
   }, [debounced]);
 
   const handleClear = () => {
@@ -57,10 +71,11 @@ function Search() {
                   <span className="dark:text-[#848e9c]">Trending</span>
                   <FireIcon className={'text-red-500 ml-1'} />
                 </h4>
-                <NFTItems />
-                <NFTItems />
-                <NFTItems />
-                <NFTItems />
+                {!loading
+                  ? searchResult.map((result) => <NFTItems key={result.id} data={result} />)
+                  : Array(3)
+                      .fill(0)
+                      .map((item, index) => <Skeleton key={index} />)}
               </div>
             </PopperWrapper>
           </div>
@@ -68,7 +83,7 @@ function Search() {
       >
         {/* header search */}
         <div className="relative mx-8 flex h-10 items-center rounded-3xl border-2 border-primary overflow-hidden ">
-          <Link to={'/search/keyword=' + searchValue  } className="flex select-none">
+          <Link to={'/search/keyword=' + searchValue} className="flex select-none">
             <button className="shrink-0 block ml-4 text-[#B7BDC6] dark:text-[#5e6673] ">{<SearchIcon />}</button>
           </Link>
           <StraightBrick className={'h-[18px] ml-3 mr-0'} />

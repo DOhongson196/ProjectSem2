@@ -1,6 +1,6 @@
 import Tippy from '@tippyjs/react/headless';
-import { Wrapper as PopperWrapper } from '../../Popper';
-import MenuItem from './Item';
+import { Wrapper as PopperWrapper } from '..';
+import MenuItem from './MenuItem';
 
 function MenuAccount({ children, items = [] }) {
   const renderItems = () => {
@@ -10,15 +10,12 @@ function MenuAccount({ children, items = [] }) {
     <Tippy
       placement="bottom-end"
       interactive
-      delay={[0, 300]}
+      delay={[0, 200]}
       hideOnClick={false}
       render={(attrs) => (
-        <div className="box w-[200px]" tabIndex="-1" {...attrs}>
-          <PopperWrapper className={'bg-white dark:bg-[#1e2329] pb-0'}>
-            <div className="flex p-4 text-xl font-semibold text-textColor dark:text-textDarkMode leading-5">
-              do***@gmail.com
-            </div>
-            <div>{renderItems()}</div>
+        <div className="box" tabIndex="-1" {...attrs}>
+          <PopperWrapper className={'bg-white dark:bg-[#1e2329] py-3'}>
+            <div className="flex flex-col justify-center ">{renderItems()}</div>
           </PopperWrapper>
         </div>
       )}

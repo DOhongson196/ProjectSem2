@@ -3,20 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import images from '../../../assets/images';
 import { DarkIcon, LightIcon } from '../../../components/Icons';
 import Button from '../../../components/Button';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import StraightBrick from '../../../components/Brick';
 import MenuAccount from '../../../components/Popper/MenuAccount';
+import MenuUtil from '../../../components/Popper/MenuUtil';
 import routesConfig from '../../../config/routes';
 import Search from './Search';
 import { Link } from 'react-router-dom';
-import { DarkModeContext } from '../../../context';
+import { AuthContext, DarkModeContext } from '../../../context';
+import { API_CATEGORY } from '../../../services/Constant';
+import axios from 'axios';
 
 const menuAccountItem = [
-  // {
-  //   icon: <FontAwesomeIcon icon={faWallet} />,
-  //   title: 'My NFTs',
-  //   to: '/mynfts',
-  // },
   {
     icon: <FontAwesomeIcon icon={faHeart} />,
     title: 'Favorites',
@@ -41,8 +39,22 @@ const menuAccountItem = [
 ];
 
 function Header() {
-  const isLogin = true;
   const context = useContext(DarkModeContext);
+  const { login } = useContext(AuthContext);
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    const fectchApi = async () => {
+      try {
+        const response = await axios.get(API_CATEGORY + '/status');
+        console.log(response.data);
+        setCategory(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fectchApi();
+  }, []);
 
   return (
     <header className="bg-white dark:bg-bgDarkMode h-20 px-28 fixed w-full top-0 left-0 flex shadow-sm  justify-center z-50 border-b border-[#eaecef]">
@@ -56,16 +68,20 @@ function Header() {
           <Search />
 
           {/* header Ranking */}
-          <div className="flex">
-            <Link to={routesConfig.ranking} className="flex select-none">
+          <div className="flex items-center">
+            <Link to={routesConfig.ranking} className="select-none">
               <Button text>Rankings</Button>
             </Link>
-            <Button text>Explore</Button>
+            <MenuUtil items={category}>
+              <div className="select-none ml-5 cursor-pointer hover:text-[#c99400] font-semibold text-textColor dark:text-textDarkMode dark:hover:text-[#c99400]">
+                Product
+              </div>
+            </MenuUtil>
           </div>
         </div>
         {/* header action */}
         <div className="flex items-center">
-          {isLogin ? (
+          {login ? (
             <>
               {/* header account */}
               <div className="mr-2 dark:text-textDarkMode">

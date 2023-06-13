@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import NFTItem from '../../components/Collection/NFTItem';
 import Select from './Select';
 import Pagination from '../../components/Pagination';
+import images from '../../assets/images';
 //import Skeleton from '../../components/Collection/NFTItemSkeleton';
 
 const sortPrice = [
@@ -29,6 +30,7 @@ const people = [
   {
     id: 1,
     name: 'All author',
+    avatar: images.logo,
   },
   {
     id: 2,
@@ -74,7 +76,6 @@ const filter = [
 function Ranking() {
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
-  const [showResult, setShowResult] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   console.log(currentPage);
 
@@ -118,7 +119,6 @@ function Ranking() {
                 {<SearchIcon width="1.2rem" height="1.2rem" />}
               </button>
               <input
-                onFocus={() => setShowResult(true)}
                 ref={refInput}
                 value={searchValue}
                 onChange={handleChange}
