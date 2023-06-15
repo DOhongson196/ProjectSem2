@@ -47,7 +47,6 @@ function Header() {
     const fectchApi = async () => {
       try {
         const response = await axios.get(API_CATEGORY + '/status');
-        console.log(response.data);
         setCategory(response.data);
       } catch (error) {
         console.log(error);
@@ -109,7 +108,10 @@ function Header() {
           {/* header cart */}
           <StraightBrick className={'h-[16px]'} />
           <Link className="flex" to={routesConfig.cart}>
-            <FontAwesomeIcon icon={faCartShopping} className={'dark:text-textDarkMode hover:text-[#c99400]'} />
+            <FontAwesomeIcon
+              icon={faCartShopping}
+              className={'dark:text-textDarkMode hover:text-[#c99400] dark:hover:text-[#c99400]'}
+            />
           </Link>
           {/* header darkmode */}
           <StraightBrick className={'h-[16px]'} />

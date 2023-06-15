@@ -7,7 +7,7 @@ const routes = {
   login: '/login',
   logout: '/logout',
   ranking: '/rankings',
-  nftdetail: '/nftdetail',
+  nftdetail: '/nftdetail/:id',
   cart: '/cart',
   checkout: '/checkout',
   myorder: '/myorder',

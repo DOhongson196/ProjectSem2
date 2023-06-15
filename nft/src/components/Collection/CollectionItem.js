@@ -1,19 +1,82 @@
 import Button from '../../components/Button';
 import { CheckIcon } from '../../components/Icons';
+import { API_CART, getProductImageUrl } from '../../services/Constant';
+import { toast } from 'react-toastify';
+import { useContext } from 'react';
+import { DarkModeContext } from '../../context';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+import useAxios from '../../hooks/useAxios';
 
-function CollectionItem() {
+function CollectionItem({ data = [], index }) {
+  const api = useAxios();
+  const { darkMode } = useContext(DarkModeContext);
+  const navigate = useNavigate();
+  const notify = () => {
+    toast('🦄  Add to cart successfully!', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+      theme: darkMode === 'light' ? 'light' : 'dark',
+    });
+  };
+
+  const error = () => {
+    toast.error('🦄  Add to cart fail!', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+      theme: darkMode === 'light' ? 'light' : 'dark',
+    });
+  };
+  const handleAddToCart = (id) => {
+    const fectchApi = async () => {
+      try {
+        await api.get(API_CART + '/' + id);
+        notify();
+      } catch (err) {
+        if (err.response?.status === 403) {
+          navigate('/login');
+        } else {
+          console.log(err.response.data.message);
+          error();
+        }
+      }
+    };
+
+    fectchApi();
+  };
+
   return (
     <div>
       <div className="relative cursor-pointer rounded-xl group flex w-full h-[78px] font-normal text-base items-center text-textColor dark:text-[#eaecef] hover:bg-[#f5f5f5] hover:scale-105 ease-in-out duration-300 dark:hover:bg-[#2b3139]">
         {/* info */}
         <div className="flex items-center w-[480px] justify-start pl-2">
           {/* ranking */}
-          <div>1</div>
+          <div
+            className={`${
+              index === 0
+                ? 'text-red-400 text-3xl font-bold'
+                : index === 1
+                ? 'text-orange-400 text-2xl font-semibold'
+                : index === 2
+                ? 'text-yellow-300 text-2xl font-medium'
+                : ''
+            }`}
+          >
+            {index + 1}
+          </div>
           {/* logo */}
           <div className="w-10 h-10 mr-4 ml-5">
             <img
               className="w-full h-full rounded-xl object-cover shrink-0 "
-              src="https://public.nftstatic.com/static/nft/zipped/a85da27a2dc74ee3a9ff13abf7d6aaf1_zipped.png"
+              src={getProductImageUrl(data?.image)}
               alt=""
             />
           </div>
@@ -21,7 +84,7 @@ function CollectionItem() {
           <div className="flex-1 min-w-0 h-full">
             <div className="flex items-center">
               <span className="text-base font-semibold text-[#1e2329] dark:text-textDarkMode text-ellipsis">
-                The CR7 NFT Collection
+                {data?.name}
               </span>
               <CheckIcon className={'text-[#f0b90b] ml-2'} />
             </div>
@@ -29,22 +92,23 @@ function CollectionItem() {
         </div>
         {/* volume */}
         <div className="flex flex-col  items-end justify-center w-[175px] mr-48">
-          <div>100</div>
+          <div>{data?.viewCount}</div>
         </div>
         {/* floor price */}
         <div className="flex items-end justify-center flex-col w-[165px] mr-20">
-          <div>100</div>
+          <div>{data?.volume}</div>
         </div>
         {/* price */}
-        <div className="flex items-end justify-end w-[200px] group-hover:hidden">200 USD</div>
+        <div className="flex items-end justify-end w-[200px] group-hover:hidden">{data?.price} USD</div>
         {/* Button */}
         <Button
+          onClick={handleAddToCart}
           primary
           className={
             'absolute w-32 hidden justify-center items-center whitespace-nowrap right-12 h-10 px-[12px] py-[6px] dark:text-textColor group-hover:block'
           }
         >
-          Buy Now
+          Add to cart
         </Button>
       </div>
     </div>
