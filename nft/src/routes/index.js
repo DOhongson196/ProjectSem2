@@ -4,7 +4,7 @@ import { routesConfig } from '../config';
 import { HeaderOnly } from '../layout';
 
 import Home from '../pages/Home';
-import Search from '../pages/Search';
+import NotAuthority from '../pages/NotAuthority';
 import Explore from '../pages/Explore';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
@@ -19,20 +19,21 @@ import LogOut from '../pages/Logout';
 
 const publicRoutes = [
   { path: routesConfig.home, component: Home },
-  { path: routesConfig.search, component: Search },
+  { path: routesConfig.authority, component: NotAuthority },
   { path: routesConfig.explore, component: Explore },
   { path: routesConfig.login, component: Login, layout: HeaderOnly },
-  { path: routesConfig.profile, component: Profile },
   { path: routesConfig.register, component: Register, layout: HeaderOnly },
   { path: routesConfig.ranking, component: Ranking },
   { path: routesConfig.nftdetail, component: NFTDetail },
   { path: routesConfig.notFound, component: NotFound },
   { path: routesConfig.logout, component: LogOut },
+];
+
+const privateRoutes = [
   { path: routesConfig.cart, component: Cart },
   { path: routesConfig.checkout, component: Checkout, layout: HeaderOnly },
   { path: routesConfig.myorder, component: MyOrder },
+  { path: routesConfig.profile, component: Profile },
 ];
-
-const privateRoutes = [];
 
 export { publicRoutes, privateRoutes };

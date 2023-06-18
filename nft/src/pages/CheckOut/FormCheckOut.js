@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 
-function FormCheckOut({ setFormValue, setValid }) {
+function FormCheckOut({ setFormValue, setValid, formValue }) {
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -23,7 +23,17 @@ function FormCheckOut({ setFormValue, setValid }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm(
+    {
+      defaultValues: {
+        customerName: formValue?.customerName || '',
+        email: formValue.email || '',
+        address: formValue.address || '',
+        phone: formValue.phone || '',
+      },
+    },
+    { resolver: yupResolver(schema) },
+  );
 
   const handleLoginForm = (data) => {
     setFormValue(data);

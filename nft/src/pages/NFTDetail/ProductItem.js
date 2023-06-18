@@ -7,13 +7,15 @@ import { API_CART, getProductImageUrl } from '../../services/Constant';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
-import { DarkModeContext } from '../../context';
+import { AuthContext, DarkModeContext } from '../../context';
 import { useNavigate } from 'react-router-dom';
+import { routesConfig } from '../../config';
 
 function ProductItem({ product = {}, url = false }) {
   const api = useAxios();
   const { darkMode } = useContext(DarkModeContext);
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const notify = () => {
     toast('🦄  Add to cart successfully!', {
       position: 'top-right',
@@ -38,15 +40,19 @@ function ProductItem({ product = {}, url = false }) {
     });
   };
   const handleAddToCart = (id) => {
+    if (!login) {
+      return navigate(routesConfig.login);
+    }
+    console.log(id);
     const fectchApi = async () => {
       try {
         await api.get(API_CART + '/' + id);
         notify();
       } catch (err) {
         if (err.response?.status === 403) {
-          navigate('/login');
+          navigate(routesConfig.authority);
         } else {
-          console.log(err.response.data.message);
+          console.log(err);
           error();
         }
       }
@@ -89,11 +95,28 @@ function ProductItem({ product = {}, url = false }) {
 
           {/* Price */}
           <div className="text-lg text-[#707a8a]">Price</div>
-          <div className="text-2xl font-semibold mt-1">{product?.price} USD</div>
+          {!product?.discount > 0 ? (
+            <div className="text-base font-bold dark:text-[#eaecef]">{product?.price}</div>
+          ) : (
+            <div className="flex items-center">
+              <div className="text-lg text-[#707a8a] dark:text-[#b7bdc6] line-through  decoration-double decoration-1">
+                {product?.price} USD
+              </div>
+              <div>
+                <div className="ml-3 text-2xl font-bold text-[#f04f4f]">
+                  {product?.price * ((100 - product?.discount) / 100)} USD
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* button */}
           <div className="mt-6">
-            <Button primary className={'px-14 py-4 dark:text-textColor text-xl'} onClick={handleAddToCart(product.id)}>
+            <Button
+              primary
+              className={'px-14 py-4 dark:text-textColor text-xl'}
+              onClick={() => handleAddToCart(product.id)}
+            >
               Add to cart
             </Button>
           </div>

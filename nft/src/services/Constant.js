@@ -17,4 +17,4 @@ export const getProductImageUrl = (filename) => {
 export const API_AUTH = 'http://localhost:8080/api/v1/auth';
 
 //cart
-export const API_CART = 'http://localhost:8080/api/v1/auth/cart';
+export const API_CART = 'http://localhost:8080/api/v1/cart';

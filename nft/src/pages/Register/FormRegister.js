@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { API_AUTH } from '../../services/Constant';
 import Modal from '../../components/Modal';
+import { routesConfig } from '../../config';
 
 function FormRegister() {
   const [error, setError] = useState('');
@@ -35,7 +36,7 @@ function FormRegister() {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleConfirm = () => {
-    navigate('/');
+    navigate(routesConfig.home);
   };
 
   const handleLoginForm = (data) => {
@@ -44,10 +45,7 @@ function FormRegister() {
       .then((res) => {
         console.log(res);
         setOpen(true);
-        setValue('email', '');
-        setValue('password', '');
-        setValue('phone', '');
-        setValue('confirmPassword', '');
+        navigate(routesConfig.login);
       })
       .catch((err) => {
         console.log(err);

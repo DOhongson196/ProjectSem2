@@ -3,15 +3,17 @@ import { CheckIcon } from '../../components/Icons';
 import { API_CART, getProductImageUrl } from '../../services/Constant';
 import { toast } from 'react-toastify';
 import { useContext } from 'react';
-import { DarkModeContext } from '../../context';
+import { AuthContext, DarkModeContext } from '../../context';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
+import { routesConfig } from '../../config';
 
 function CollectionItem({ data = [], index }) {
   const api = useAxios();
   const { darkMode } = useContext(DarkModeContext);
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const notify = () => {
     toast('🦄  Add to cart successfully!', {
       position: 'top-right',
@@ -36,15 +38,19 @@ function CollectionItem({ data = [], index }) {
     });
   };
   const handleAddToCart = (id) => {
+    if (!login) {
+      return navigate(routesConfig.login);
+    }
+    console.log(API_CART + '/' + id);
     const fectchApi = async () => {
       try {
         await api.get(API_CART + '/' + id);
         notify();
       } catch (err) {
         if (err.response?.status === 403) {
-          navigate('/login');
+          navigate(routesConfig.authority);
         } else {
-          console.log(err.response.data.message);
+          console.log(err);
           error();
         }
       }
@@ -102,7 +108,7 @@ function CollectionItem({ data = [], index }) {
         <div className="flex items-end justify-end w-[200px] group-hover:hidden">{data?.price} USD</div>
         {/* Button */}
         <Button
-          onClick={handleAddToCart}
+          onClick={() => handleAddToCart(data?.id)}
           primary
           className={
             'absolute w-32 hidden justify-center items-center whitespace-nowrap right-12 h-10 px-[12px] py-[6px] dark:text-textColor group-hover:block'

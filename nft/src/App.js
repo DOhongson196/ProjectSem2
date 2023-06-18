@@ -38,7 +38,7 @@ function App() {
             }
             const Page = route.component;
             return (
-              <Route element={<PrivateRoute />}>
+              <Route element={<PrivateRoute />} key={index + route}>
                 <Route
                   key={index}
                   path={route.path}

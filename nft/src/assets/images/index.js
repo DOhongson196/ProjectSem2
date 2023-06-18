@@ -4,6 +4,7 @@ const images = {
   logoGoogle: require('./logoGoole.svg').default,
   logoRegister: require('./logoRegister.png'),
   notFound: require('./404-error.png'),
+  emptyCart: require('./empty-cart.png'),
   slide1: require('./homeSlide1.jpg'),
   slide2: require('./homeSlide2.jpg'),
   slide3: require('./homeSlide3.jpg'),

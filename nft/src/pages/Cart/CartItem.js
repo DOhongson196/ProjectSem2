@@ -1,25 +1,67 @@
 import { CheckIcon } from '../../components/Icons';
 import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { API_CART, getProductImageUrl } from '../../services/Constant';
+import useAxios from '../../hooks/useAxios';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-function CartItem() {
-  const handleRemove = () => {
-    
-  }
+function CartItem({ data = [], setRender, render }) {
+  const [quantity, setQuantity] = useState(data?.quantity || 1);
+  const [idProduct, setIdProduct] = useState(0);
+  const api = useAxios();
+
+  const handleRemove = async (id) => {
+    try {
+      const response = await api.delete(API_CART + '/' + id);
+      console.log(response);
+      setRender(!render);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (idProduct !== 0) {
+      const fectchApi = async () => {
+        try {
+          const response = await api.get(API_CART + '/' + idProduct + '/' + quantity);
+          console.log(response);
+          setRender(!render);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fectchApi();
+    }
+  }, [quantity]);
+
+  const handleDecrement = (id) => {
+    if (quantity > 0) {
+      setIdProduct(id);
+      setQuantity((preCount) => preCount - 1);
+    }
+  };
+
+  const handleIncrement = (id) => {
+    setIdProduct(id);
+    setQuantity((preCount) => preCount + 1);
+  };
+
   return (
     <div>
       <div className="relative rounded-xl flex w-full h-[78px] font-normal text-base items-center text-textColor dark:text-[#eaecef]">
         {/* info */}
         <div className="flex items-center w-[480px] justify-start pl-2">
           {/* delete */}
-          <button className="text-[#B7BDC6] dark:text-[#848e9c]" onClick={handleRemove}>
+          <button className="text-[#B7BDC6] dark:text-[#848e9c]" onClick={() => handleRemove(data?.id)}>
             <FontAwesomeIcon icon={faXmarkCircle} />
           </button>
           {/* logo */}
           <div className="w-10 h-10 mr-4 ml-4">
             <img
               className="w-full h-full rounded-xl object-cover shrink-0 "
-              src="https://public.nftstatic.com/static/nft/zipped/a85da27a2dc74ee3a9ff13abf7d6aaf1_zipped.png"
+              src={getProductImageUrl(data?.image)}
               alt=""
             />
           </div>
@@ -27,26 +69,42 @@ function CartItem() {
           <div className="flex-1 min-w-0 h-full">
             <div className="flex items-center">
               <span className="text-base font-semibold text-[#1e2329] dark:text-textDarkMode text-ellipsis">
-                The CR7 NFT Collection
+                {data?.nameProduct}
               </span>
               <CheckIcon className={'text-[#f0b90b] ml-2'} />
             </div>
           </div>
         </div>
-        {/* volume */}
-        <div className="flex flex-col  items-center justify-center w-[175px] mr-48">
-          <div>100 USD</div>
+        {/* price */}
+        <div className="flex flex-col  items-center justify-center w-[135px] mr-10">
+          <div>{data?.price} USD</div>
         </div>
-        {/* floor price */}
-        <div className="flex items-center justify-center flex-col w-[165px] mr-20 dark:text-textColor">
-          <input
-            type="number"
-            min="1"
-            className="outline-none border rounded-lg pl-4 w-[60px] py-[0.5px] border-textColor"
-          />
+        {/* sale */}
+        <div className="flex flex-col  items-center justify-center w-[135px] mr-10">
+          <div>{data?.discount}</div>
+        </div>
+        {/* quantity */}
+        <div className="flex items-center justify-center flex-col w-[135px] mr-40 ">
+          <div className="flex items-center text-textColor dark:text-[#eaecef]">
+            <div
+              className="w-6 h-6 flex items-center justify-center bg-[#eaecef] dark:bg-[#474D57]  rounded-l cursor-pointer"
+              onClick={() => handleDecrement(data?.id)}
+            >
+              -
+            </div>
+            <div className="border border-[#eaecef] dark:border-[#474D57] px-4 w-6 h-6 flex items-center justify-center hover:border-primary">
+              {quantity}
+            </div>
+            <div
+              className="w-6 h-6 flex items-center justify-center bg-[#eaecef] dark:bg-[#474D57]  rounded-r cursor-pointer"
+              onClick={() => handleIncrement(data?.id)}
+            >
+              +
+            </div>
+          </div>
         </div>
         {/* price */}
-        <div className="flex items-end justify-end w-[200px]">200 USD</div>
+        <div className="flex items-end justify-end w-[200px]">{data?.subTotal} USD</div>
       </div>
     </div>
   );

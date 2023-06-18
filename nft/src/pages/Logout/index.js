@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { routesConfig } from '../../config';
 import { AuthContext } from '../../context';
 
 function LogOut() {
@@ -13,9 +14,9 @@ function LogOut() {
       localStorage.removeItem('keep');
       setKeepLogin(true);
       setLogin(false);
-      navigate('/');
+      navigate(routesConfig.home);
     } else {
-      navigate('/');
+      navigate(routesConfig.home);
     }
   }, []);
 

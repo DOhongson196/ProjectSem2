@@ -34,7 +34,20 @@ function RecommendItem({ data }) {
             </div>
             <div className="flex items-center">
               <div className="text-[#707a8a] dark:text-[#b7bdc6] text-sm mr-2">Price:</div>
-              <div className="text-base font-bold dark:text-[#eaecef]">{data?.price}</div>
+              {!data?.discount > 0 ? (
+                <div className="text-base font-bold dark:text-[#eaecef]">{data?.price} USD</div>
+              ) : (
+                <div className="flex items-center">
+                  <div className="text-base text-[#707a8a] dark:text-[#b7bdc6] line-through  decoration-double decoration-1">
+                    {data?.price} USD
+                  </div>
+                  <div>
+                    <div className="ml-3 text-lg font-bold text-[#f04f4f]">
+                      {data?.price * ((100 - data?.discount) / 100)} USD
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

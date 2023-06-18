@@ -3,12 +3,12 @@ import Button from '../../components/Button';
 import { LeftIcon } from '../../components/Icons';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
-function MethodPayment({ formValue, setValid }) {
+function MethodPayment({ formValue, setValid, subTotal }) {
   const [radio, setRadio] = useState('1');
   const onChange = (e) => {
     setRadio(e.target.value);
   };
-  console.log(formValue);
+  console.log(subTotal);
   const handleBack = () => {
     setValid(false);
     console.log('set');
@@ -56,7 +56,7 @@ function MethodPayment({ formValue, setValid }) {
                     purchase_units: [
                       {
                         amount: {
-                          value: '100',
+                          value: `${subTotal}`,
                           currency_code: 'USD',
                         },
                       },

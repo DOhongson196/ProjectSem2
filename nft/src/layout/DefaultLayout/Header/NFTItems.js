@@ -2,9 +2,9 @@ import { CheckIcon } from '../../../components/Icons';
 import { getProductImageUrl } from '../../../services/Constant';
 import { Link } from 'react-router-dom';
 
-function NFTItems({ data }) {
+function NFTItems({ data, setShowResult }) {
   return (
-    <Link to={'/nftdetail/' + data?.id}>
+    <Link to={'/nftdetail/' + data?.id} onClick={() => setShowResult(false)}>
       <div className="flex items-center mx-2 p-2 cursor-pointer hover:bg-[#f5f5f5] dark:hover:bg-[#2b3139] hover:rounded-lg">
         <div className="w-8 h-8 mr-4">
           <img

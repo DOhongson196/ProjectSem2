@@ -7,18 +7,15 @@ import NFTItems from './NFTItems';
 import StraightBrick from '../../../components/Brick';
 import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '../../../hooks';
-import { Link } from 'react-router-dom';
 import { API_PRODUCT } from '../../../services/Constant';
 import axios from 'axios';
 import Skeleton from './Skeleton';
-//import routesConfig from '../../../config/routes';
 
 function Search() {
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
-
   const debounced = useDebounce(searchValue, 500);
 
   const refInput = useRef();
@@ -32,7 +29,6 @@ function Search() {
     const fectchApi = async () => {
       try {
         const response = await axios.get(API_PRODUCT + `/header/find?query=${debounced}`);
-        console.log(response.data);
         setSearchResult(response.data);
         setLoading(false);
       } catch (error) {
@@ -60,20 +56,22 @@ function Search() {
     <div className="flex items-center">
       <Tippy
         placement="bottom"
-        interactive
+        interactive={true}
         visible={showResult && searchResult.length > 0}
         onClickOutside={() => setShowResult(false)}
         render={(attrs) => (
-          <div className="box w-[418px]" tabIndex="-1" {...attrs}>
+          <div tabIndex="-1" {...attrs} className="box w-[418px] max-h-[316px] overflow-y-auto rounded-lg">
             <PopperWrapper>
               <div className="mt-4">
-                <h4 className="flex text-xs items-center text-textColor dark:text-textDarkMode mb-2 px-4">
+                <h4 className="flex text-xs items-center text-textColor dark:text-textDarkMode mb-2 px-4 ">
                   <span className="dark:text-[#848e9c]">Trending</span>
                   <FireIcon className={'text-red-500 ml-1'} />
                 </h4>
                 {!loading
-                  ? searchResult.map((result) => <NFTItems key={result.id} data={result} />)
-                  : Array(3)
+                  ? searchResult.map((result) => (
+                      <NFTItems key={result.id} data={result} setShowResult={setShowResult} />
+                    ))
+                  : Array(4)
                       .fill(0)
                       .map((item, index) => <Skeleton key={index} />)}
               </div>
@@ -83,9 +81,7 @@ function Search() {
       >
         {/* header search */}
         <div className="relative mx-8 flex h-10 items-center rounded-3xl border-2 border-primary overflow-hidden ">
-          <Link to={'/search/keyword=' + searchValue} className="flex select-none">
-            <button className="shrink-0 block ml-4 text-[#B7BDC6] dark:text-[#5e6673] ">{<SearchIcon />}</button>
-          </Link>
+          <div className="shrink-0 block ml-4 text-[#B7BDC6] dark:text-[#5e6673] ">{<SearchIcon />}</div>
           <StraightBrick className={'h-[18px] ml-3 mr-0'} />
           <input
             onFocus={() => setShowResult(true)}

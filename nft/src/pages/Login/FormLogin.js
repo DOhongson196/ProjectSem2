@@ -9,6 +9,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { API_AUTH } from '../../services/Constant';
+import { routesConfig } from '../../config';
 
 function FormLogin() {
   const [error, setError] = useState('');
@@ -46,7 +47,7 @@ function FormLogin() {
           localStorage.removeItem('keep');
         }
 
-        navigate('/');
+        navigate(routesConfig.home);
       })
       .catch((err) => {
         console.log(err);
