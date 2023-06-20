@@ -12,7 +12,6 @@ function CheckOut() {
   const api = useAxios();
   const [carts, setCarts] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
-  console.log(subTotal);
   useEffect(() => {
     window.scrollTo(0, 0);
     const fectchApi = async () => {

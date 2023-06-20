@@ -108,7 +108,6 @@ function FormRegister() {
             <small className="text-[#F6465D]">{errors.confirmPassword?.message}</small>
           </div>
         </div>
-        {/* modal */}
         {/* button */}
         <span className="text-[#F6465D] ">{error}</span>
         <Button

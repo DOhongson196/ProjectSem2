@@ -6,18 +6,18 @@ import FooterItem from './FooterItem';
 
 function Footer() {
   return (
-    <div className="px-32 pt-12 w-full bg-[#FAFAFA] dark:bg-[#0b0e11] text-base font-normal text-[#707a8a] dark:text-[#848e9c] leading-5 ">
-      <div className="flex">
-        <div className="w-[25%] pb-6">
+    <div className="px-32 pt-12 w-full  bg-[#FAFAFA] dark:bg-[#0b0e11] text-base font-normal text-[#707a8a] dark:text-[#848e9c] leading-5 ">
+      <div className="flex max-w-screen-xl mx-auto">
+        <div className="w-[35%] pb-6 mr-20">
           <img className="mt-4 select-none w-[120px] h-[110px]" src={images.logo} alt="Incredible" />
           <div className=" w-5/6 mt-2">Please contact us if you have any specific idea or request.</div>
-          <div className="flex items-center   ">
+          <div className="flex items-center mt-2">
             <MailIcon />
-            <div className="underline ml-2">incredible@gmail.com</div>
+            <div className="underline ml-2">dohongson196@gmail.com</div>
           </div>
         </div>
         <div className="w-3/5 pb-6 flex">
-          <div className="w-1/4">
+          <div className="w-1/2">
             <FooterItem heading>About Us</FooterItem>
             <FooterItem content>About Incredible</FooterItem>
             <FooterItem content>Careers</FooterItem>
@@ -25,25 +25,15 @@ function Footer() {
             <FooterItem content>Community</FooterItem>
             <FooterItem content>Terms</FooterItem>
           </div>
-          <div className="w-1/4">
-            <FooterItem heading>Products</FooterItem>
-            <FooterItem content>Exchange</FooterItem>
-            <FooterItem content>Incredible Charity Foundation</FooterItem>
-            <FooterItem content>Academy</FooterItem>
-          </div>
-          <div className="w-1/4">
-            <FooterItem heading>Service</FooterItem>
-            <FooterItem content>Buy Crypto</FooterItem>
-          </div>
-          <div className="w-1/4">
+
+          <div className="w-1/2">
             <FooterItem heading>Support</FooterItem>
             <FooterItem content>FAQ</FooterItem>
             <FooterItem content>Help Center</FooterItem>
             <FooterItem content>Give us a feedback</FooterItem>
-            <FooterItem content>What is NFT</FooterItem>
           </div>
         </div>
-        <div className="w-[15%]">
+        <div className="flex-1">
           <FooterItem heading>Community</FooterItem>
           <div className="flex text-2xl text-[#B7BDC6] dark:text-[#848e9c]">
             <div className="cursor-pointer hover:text-textColor dark:hover:text-[#eaecef]">

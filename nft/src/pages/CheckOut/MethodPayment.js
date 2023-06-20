@@ -2,17 +2,47 @@ import { useState } from 'react';
 import Button from '../../components/Button';
 import { LeftIcon } from '../../components/Icons';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import useAxios from '../../hooks/useAxios';
+import { API_ORDER } from '../../services/Constant';
+import { useEffect } from 'react';
+import Modal from '../../components/Modal';
+import { useNavigate } from 'react-router-dom';
+import { routesConfig } from '../../config';
 
 function MethodPayment({ formValue, setValid, subTotal }) {
   const [radio, setRadio] = useState('1');
+  const [payment, setPayment] = useState('');
+  const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const navigate = useNavigate();
   const onChange = (e) => {
     setRadio(e.target.value);
   };
-  console.log(subTotal);
   const handleBack = () => {
     setValid(false);
-    console.log('set');
   };
+  const api = useAxios();
+
+  useEffect(() => {
+    if (payment !== '') {
+      const fectchApi = async () => {
+        try {
+          await api.post(API_ORDER, { ...formValue, invoicePayment: payment });
+          setOpen(true);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      fectchApi();
+    }
+  }, [payment]);
+
+  const handleConfirm = () => {
+    navigate(routesConfig.home);
+  };
+
   return (
     <>
       <div className="col-end-5 w-11/12 bg-[#f5f5f5] dark:bg-[#0b0e11] p-6 mt-5 rounded-xl">
@@ -39,8 +69,9 @@ function MethodPayment({ formValue, setValid, subTotal }) {
           <Button
             primary
             className={'w-full justify-center items-center whitespace-nowrap h-12 py-[6px] dark:text-textColor my-6'}
+            onClick={() => setPayment('COD')}
           >
-            Method Payment
+            Order confirmation
           </Button>
         )}
         {radio === '2' && (
@@ -66,14 +97,14 @@ function MethodPayment({ formValue, setValid, subTotal }) {
                 onApprove={(data, actions) => {
                   return actions.order.capture().then((details) => {
                     console.log(details);
-                    alert('Successfully');
+                    setPayment('ONLINE');
                   });
                 }}
                 onCancel={(data) => {
-                  alert('Cancelled');
+                  setOpen2(true);
                 }}
                 onError={(data) => {
-                  alert('Error: ' + data);
+                  setOpen1(true);
                 }}
               />
             </PayPalScriptProvider>
@@ -89,6 +120,44 @@ function MethodPayment({ formValue, setValid, subTotal }) {
           Back to CheckOut
         </div>
       </button>
+      <Modal open={open} className={'top-[-100px]'}>
+        <div className="text-2xl font-semibold mb-4"> Order Successful</div>
+        <div className="max-w-[350px] text-justify ">
+          Thank you for choosing our products. This email serves as confirmation of your order and provides details
+          regarding your purchase.
+        </div>
+        <button
+          className="float-right px-4 py-2 mt-4 bg-primary text-textColor rounded font-semibold"
+          onClick={handleConfirm}
+        >
+          Back homepage
+        </button>
+      </Modal>
+      <Modal open={open1} onClose={() => setOpen1(false)} className={'top-[-100px]'} close>
+        <div className="text-2xl font-semibold mb-4"> Order error</div>
+        <div className="max-w-[310px] text-justify text-[#707a8a] dark:text-[#b7bdc6]">
+          We regret to inform you that your recent purchase attempt was unsuccessful. We apologize for any inconvenience
+          caused.
+        </div>
+        <button
+          className="float-right px-4 py-2 mt-4 bg-primary text-textColor rounded font-semibold"
+          onClick={() => setOpen1(false)}
+        >
+          OK
+        </button>
+      </Modal>
+      <Modal open={open2} onClose={() => setOpen2(false)} className={'top-[-100px]'} close>
+        <div className="text-2xl font-semibold mb-4"> Payment Cancellation</div>
+        <div className="max-w-[310px] text-justify text-[#707a8a] dark:text-[#b7bdc6]">
+          We regret to inform you that your payment has been canceled. We apologize for any inconvenience caused.
+        </div>
+        <button
+          className="float-right px-4 py-2 mt-4 bg-primary text-textColor rounded font-semibold"
+          onClick={() => setOpen2(false)}
+        >
+          OK
+        </button>
+      </Modal>
     </>
   );
 }

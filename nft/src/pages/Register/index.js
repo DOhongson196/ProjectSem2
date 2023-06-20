@@ -42,10 +42,10 @@ function Register() {
           <div className="flex flex-col flex-1 items-center justify-center">
             <img className="w-[384px] h-[216px]" src={images.logoRegister} alt="logo" />
             <div className="text-xl font-semibold dark:text-[#b7bdc6] mt-6 w-[340px] text-center">
-              Sign up to get 100 USDT trading fee rebate!
+              Sign up to receive many attractive offers
             </div>
             <div className="text-base text-[#707a8a] w-[380px] mt-4 text-center dark:text-[#848e9c]">
-              Follow the registration steps to redeem your rewards and start your crypto journey with us!
+              Follow the registration steps to start your order now with us!!!
             </div>
           </div>
         </div>

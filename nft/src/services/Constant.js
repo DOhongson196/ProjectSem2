@@ -18,3 +18,6 @@ export const API_AUTH = 'http://localhost:8080/api/v1/auth';
 
 //cart
 export const API_CART = 'http://localhost:8080/api/v1/cart';
+
+//order
+export const API_ORDER = 'http://localhost:8080/api/v1/order';

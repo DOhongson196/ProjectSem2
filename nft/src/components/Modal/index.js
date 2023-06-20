@@ -1,8 +1,8 @@
-function Modal({ open, onClose, children, className }) {
+function Modal({ open, onClose, children, className, close = false }) {
   return (
     <div
       onClick={onClose}
-      className={`fixed z-[60] inset-0 flex justify-center items-center transition-colors text-[#1e2329] dark:text-textDarkMode ${className} ${
+      className={`fixed z-[999] inset-0 flex justify-center items-center transition-colors text-[#1e2329] dark:text-textDarkMode ${className} ${
         open ? 'visible bg-black/30' : 'invisible'
       }`}
     >
@@ -12,9 +12,11 @@ function Modal({ open, onClose, children, className }) {
           open ? 'scale-100 opacity-100' : 'scale-125 opacity-0'
         }`}
       >
-        <button onClick={onClose} className="absolute top-2 right-2 p-1 rounded-lg hover:text-primary">
-          X
-        </button>
+        {close && (
+          <button onClick={onClose} className="absolute top-2 right-2 p-1 rounded-lg hover:text-primary">
+            X
+          </button>
+        )}
         {children}
       </div>
     </div>

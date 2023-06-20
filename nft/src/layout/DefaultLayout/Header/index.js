@@ -56,8 +56,8 @@ function Header() {
   }, []);
 
   return (
-    <header className="bg-white dark:bg-bgDarkMode h-20 px-28 fixed w-full top-0 left-0 flex shadow-sm  justify-center z-50 border-b border-[#eaecef]">
-      <div className=" w-full flex items-center justify-between">
+    <header className="bg-white dark:bg-bgDarkMode h-20 fixed w-full top-0 left-0 flex shadow-sm  justify-center z-50 border-b border-[#eaecef]">
+      <div className=" w-[1280px] flex items-center justify-between">
         <div className="flex flex-1">
           {/* header logo */}
           <Link to={routesConfig.home} className="flex select-none">

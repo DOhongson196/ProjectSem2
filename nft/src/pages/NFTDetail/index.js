@@ -27,7 +27,7 @@ function NFTDetail() {
     };
 
     fectchApi();
-  }, [productId]);
+  }, []);
 
   return (
     <>

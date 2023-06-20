@@ -23,17 +23,15 @@ function FormCheckOut({ setFormValue, setValid, formValue }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm(
-    {
-      defaultValues: {
-        customerName: formValue?.customerName || '',
-        email: formValue.email || '',
-        address: formValue.address || '',
-        phone: formValue.phone || '',
-      },
+  } = useForm({
+    defaultValues: {
+      customerName: formValue?.customerName || '',
+      email: formValue.email || '',
+      address: formValue.address || '',
+      phone: formValue.phone || '',
     },
-    { resolver: yupResolver(schema) },
-  );
+    resolver: yupResolver(schema),
+  });
 
   const handleLoginForm = (data) => {
     setFormValue(data);
