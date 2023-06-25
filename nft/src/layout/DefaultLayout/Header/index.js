@@ -13,35 +13,37 @@ import { Link } from 'react-router-dom';
 import { AuthContext, DarkModeContext } from '../../../context';
 import { API_CATEGORY } from '../../../services/Constant';
 import axios from 'axios';
-
-const menuAccountItem = [
-  {
-    icon: <FontAwesomeIcon icon={faHeart} />,
-    title: 'Favorites',
-    to: '/favorites',
-  },
-  {
-    icon: <FontAwesomeIcon icon={faTags} />,
-    title: 'My Orders',
-    to: '/myorder',
-  },
-  {
-    icon: <FontAwesomeIcon icon={faAddressCard} />,
-    title: 'Profile',
-    to: '/profile',
-  },
-  {
-    icon: <FontAwesomeIcon icon={faSignOut} />,
-    title: 'Log out',
-    to: '/logout',
-    separate: true,
-  },
-];
+import Modal from '../../../components/Modal';
 
 function Header() {
   const context = useContext(DarkModeContext);
   const { login } = useContext(AuthContext);
   const [category, setCategory] = useState([]);
+  const [open, setOpen] = useState(false);
+
+  const menuAccountItem = [
+    {
+      icon: <FontAwesomeIcon icon={faHeart} />,
+      title: 'Favorites',
+      onClick: () => setOpen(true),
+    },
+    {
+      icon: <FontAwesomeIcon icon={faTags} />,
+      title: 'My Orders',
+      to: routesConfig.myorder,
+    },
+    {
+      icon: <FontAwesomeIcon icon={faAddressCard} />,
+      title: 'Profile',
+      onClick: () => setOpen(true),
+    },
+    {
+      icon: <FontAwesomeIcon icon={faSignOut} />,
+      title: 'Log out',
+      to: routesConfig.logout,
+      separate: true,
+    },
+  ];
 
   useEffect(() => {
     const fectchApi = async () => {
@@ -68,14 +70,17 @@ function Header() {
 
           {/* header Ranking */}
           <div className="flex items-center">
-            <Link to={routesConfig.ranking} className="select-none">
-              <Button text>Rankings</Button>
-            </Link>
-            <MenuUtil items={category}>
-              <div className="select-none ml-5 cursor-pointer hover:text-[#c99400] font-semibold text-textColor dark:text-textDarkMode dark:hover:text-[#c99400]">
-                Product
-              </div>
-            </MenuUtil>
+            <div>
+              <MenuUtil items={category}>
+                <div className="select-none mx-5 cursor-pointer hover:text-[#c99400] font-semibold text-textColor dark:text-textDarkMode dark:hover:text-[#c99400]">
+                  Category
+                </div>
+              </MenuUtil>
+            </div>
+
+            <Button to={routesConfig.explore} text>
+              Ranking
+            </Button>
           </div>
         </div>
         {/* header action */}
@@ -120,6 +125,20 @@ function Header() {
           </button>
         </div>
       </div>
+      {/* modal */}
+      <Modal open={open} onClose={() => setOpen(false)} className={'top-[-100px]'} close>
+        <div className="text-2xl font-semibold mb-6 mt-2">Feature under development</div>
+        <div className="max-w-[400px] text-[#707a8a] dark:text-[#b7bdc6]">
+          Thank you for your interest. We are currently working on implementing this functionality to enhance your
+          experience. Stay tuned for future updates!
+        </div>
+        <button
+          className="float-right px-4 py-2 mt-4 bg-primary text-textColor rounded font-semibold"
+          onClick={() => setOpen(false)}
+        >
+          OK
+        </button>
+      </Modal>
     </header>
   );
 }

@@ -6,9 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Select({ list = [], img = false }) {
-  const [selected, setSelected] = useState(list[0]);
-
+export default function Select({ list = [], img = false, selected, setSelected = Function }) {
   return (
     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (

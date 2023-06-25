@@ -1,4 +1,5 @@
 import Tippy from '@tippyjs/react/headless';
+import jwtDecode from 'jwt-decode';
 import { Wrapper as PopperWrapper } from '../../Popper';
 import MenuItem from './Item';
 
@@ -15,8 +16,8 @@ function MenuAccount({ children, items = [] }) {
       render={(attrs) => (
         <div className="box w-[200px]" tabIndex="-1" {...attrs}>
           <PopperWrapper className={'bg-white dark:bg-[#1e2329] pb-0'}>
-            <div className="flex p-4 text-xl font-semibold text-textColor dark:text-textDarkMode leading-5">
-              do***@gmail.com
+            <div className="p-4 break-words text-base font-semibold text-textColor dark:text-textDarkMode leading-5">
+              {jwtDecode(JSON.parse(localStorage.getItem('user'))?.accessToken).sub}
             </div>
             <div>{renderItems()}</div>
           </PopperWrapper>

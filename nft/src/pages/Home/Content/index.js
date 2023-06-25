@@ -54,11 +54,11 @@ function HomeContent() {
             setAcviteFalse={() => setAcvite(false)}
           />
           {result.map((data, index) => (
-            <CollectionItem data={data} key={data.id} index={index} />
+            <CollectionItem data={data} key={data.id} index={index} cart />
           ))}
           <ToastContainer />
           <Button
-            to={routesConfig.ranking}
+            to={routesConfig.explore}
             text
             className={'absolute right-[-20px] bottom-[-35px] text-textColor  dark:text-textDarkMode'}
             rightIcon={<FontAwesomeIcon icon={faArrowRight} />}
@@ -71,7 +71,7 @@ function HomeContent() {
         <div className="flex relative flex-col max-w-screen-xl mx-auto w-full">
           <div className=" text-textColor font-semibold  dark:text-textDarkMode my-10 text-3xl">Top products</div>
           <CollectionMenu />
-          {Array(3)
+          {Array(5)
             .fill(0)
             .map((item, index) => (
               <Skeleton key={index} />

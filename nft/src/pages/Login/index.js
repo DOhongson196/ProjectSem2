@@ -29,11 +29,18 @@ function Login() {
             <img className="w-5 select-none mr-3 block" src={images.logoGoogle} alt="logo google" />
             Continue with Google
           </Button>
-          <Link to={routesConfig.register}>
-            <div className="text-[#c99400] dark:text-[#f0b90b] cursor-pointer mt-6 font-semibold hover:text-primary hover:underline">
-              Create a Incredible Account
-            </div>
-          </Link>
+          <div className="flex justify-between">
+            <Link to={routesConfig.resetpass}>
+              <div className="text-[#c99400] dark:text-[#f0b90b] cursor-pointer mt-6 font-semibold hover:text-primary hover:underline">
+                Forgot password?
+              </div>
+            </Link>
+            <Link to={routesConfig.register}>
+              <div className="text-[#c99400] dark:text-[#f0b90b] cursor-pointer mt-6 font-semibold hover:text-primary hover:underline">
+                Create a Incredible Account
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

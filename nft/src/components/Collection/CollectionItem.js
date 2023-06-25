@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
 import { routesConfig } from '../../config';
 
-function CollectionItem({ data = [], index }) {
+function CollectionItem({ data = [], index, cart = false }) {
   const api = useAxios();
   const { darkMode } = useContext(DarkModeContext);
   const navigate = useNavigate();
@@ -105,17 +105,21 @@ function CollectionItem({ data = [], index }) {
           <div>{data?.volume}</div>
         </div>
         {/* price */}
-        <div className="flex items-end justify-end w-[200px] group-hover:hidden">{data?.price} USD</div>
+        <div className={`flex items-end justify-end w-[200px] ${cart ? 'group-hover:hidden' : ''}`}>
+          {data?.price} USD
+        </div>
         {/* Button */}
-        <Button
-          onClick={() => handleAddToCart(data?.id)}
-          primary
-          className={
-            'absolute w-32 hidden justify-center items-center whitespace-nowrap right-12 h-10 px-[12px] py-[6px] dark:text-textColor group-hover:block'
-          }
-        >
-          Add to cart
-        </Button>
+        {cart && (
+          <Button
+            onClick={() => handleAddToCart(data?.id)}
+            primary
+            className={
+              'absolute w-32 hidden justify-center items-center whitespace-nowrap right-12 h-10 px-[12px] py-[6px] dark:text-textColor group-hover:block'
+            }
+          >
+            Add to cart
+          </Button>
+        )}
       </div>
     </div>
   );

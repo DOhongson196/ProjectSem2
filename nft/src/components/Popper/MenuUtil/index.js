@@ -8,7 +8,7 @@ function MenuAccount({ children, items = [] }) {
   };
   return (
     <Tippy
-      placement="bottom-end"
+      placement="bottom-start"
       interactive
       delay={[0, 200]}
       hideOnClick={false}

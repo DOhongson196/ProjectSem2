@@ -16,6 +16,8 @@ import NotFound from '../pages/NotFound';
 import Checkout from '../pages/CheckOut';
 import MyOrder from '../pages/MyOrder';
 import LogOut from '../pages/Logout';
+import ActiveUser from '../pages/ActiveUser';
+import ResetPass from '../pages/ResetPass';
 
 const publicRoutes = [
   { path: routesConfig.home, component: Home },
@@ -23,10 +25,12 @@ const publicRoutes = [
   { path: routesConfig.explore, component: Explore },
   { path: routesConfig.login, component: Login, layout: HeaderOnly },
   { path: routesConfig.register, component: Register, layout: HeaderOnly },
-  { path: routesConfig.ranking, component: Ranking },
+  { path: routesConfig.product, component: Ranking },
   { path: routesConfig.nftdetail, component: NFTDetail },
   { path: routesConfig.notFound, component: NotFound },
   { path: routesConfig.logout, component: LogOut },
+  { path: routesConfig.resetpass, component: ResetPass },
+  { path: routesConfig.activeuser, component: ActiveUser, layout: HeaderOnly },
 ];
 
 const privateRoutes = [

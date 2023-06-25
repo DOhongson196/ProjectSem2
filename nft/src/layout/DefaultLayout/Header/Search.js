@@ -83,14 +83,17 @@ function Search() {
         <div className="relative mx-8 flex h-10 items-center rounded-3xl border-2 border-primary overflow-hidden ">
           <div className="shrink-0 block ml-4 text-[#B7BDC6] dark:text-[#5e6673] ">{<SearchIcon />}</div>
           <StraightBrick className={'h-[18px] ml-3 mr-0'} />
-          <input
-            onFocus={() => setShowResult(true)}
-            ref={refInput}
-            value={searchValue}
-            onChange={handleChange}
-            placeholder="Search"
-            className="dark:bg-bgDarkMode w-80 flex-1 h-full outline-none pl-1 mr-10 text-base text-textColor dark:text-textDarkMode "
-          />
+          <form autoComplete="off">
+            <input
+              onFocus={() => setShowResult(true)}
+              ref={refInput}
+              value={searchValue}
+              onChange={handleChange}
+              placeholder="Search"
+              autoComplete="new-password"
+              className="dark:bg-bgDarkMode w-80 flex-1 h-full outline-none pl-1 mr-10 text-base text-textColor dark:text-textDarkMode "
+            />
+          </form>
           {!!searchValue && (
             <button
               className="  text-[#B7BDC6] dark:text-[#5e6673] pr-5 absolute right-[-6px] top-1/2 translate-y-[-46%] "

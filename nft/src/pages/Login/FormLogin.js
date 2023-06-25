@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { API_AUTH } from '../../services/Constant';
 import { routesConfig } from '../../config';
+import { useEffect } from 'react';
 
 function FormLogin() {
   const [error, setError] = useState('');
@@ -29,6 +30,12 @@ function FormLogin() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
+  useEffect(() => {
+    if (login) {
+      navigate(routesConfig.home);
+    }
+  }, [login]);
 
   const handleLoginForm = (data) => {
     console.log(data);
@@ -71,65 +78,65 @@ function FormLogin() {
 
   return (
     <>
-      {login ? (
-        <h1>You are already logged</h1>
-      ) : (
-        <form onSubmit={handleSubmit(handleLoginForm)}>
-          {/* Email */}
-          <div>
-            <label className="font-normal cursor-text">Email</label>
-            <div className="relative mt-1 w-full leading-4 h-12 rounded border border-[#eaecef] dark:border-[#474d57] hover:border-[#c99400] dark:hover:border-primary mb-5 ">
-              <input className="w-full h-full px-3 outline-none bg-transparent mb-[2px]" {...register('email')} />
-              <small className="text-[#F6465D]">{errors.email?.message}</small>
-
-              {!!watchLoginId && (
-                <button
-                  type="button"
-                  className=" w-5  text-[#B7BDC6] dark:text-[#5e6673] pr-5 absolute right-0 top-1/2 translate-y-[-46%] "
-                  onClick={() => setValue('email', '')}
-                >
-                  <FontAwesomeIcon icon={faCircleXmark} />
-                </button>
-              )}
-            </div>
-          </div>
-          {/* password */}
-          <div>
-            <label className="font-normal cursor-text">Password</label>
-            <div className="relative mt-1 w-full leading-4 h-12 rounded border border-[#eaecef] dark:border-[#474d57] hover:border-[#c99400] dark:hover:border-primary mb-5 ">
-              <input
-                className="w-full h-full px-3 outline-none bg-transparent mb-[2px]"
-                autoComplete="off"
-                type="password"
-                {...register('password')}
-              />
-              <small className="text-[#F6465D]">{errors.password?.message}</small>
-            </div>
-          </div>
-          {/* Checkbox */}
-          <div className="flex items-center my-3">
+      <form autoComplete="off" onSubmit={handleSubmit(handleLoginForm)}>
+        {/* Email */}
+        <div>
+          <label className="font-normal cursor-text">Email</label>
+          <div className="relative mt-1 w-full leading-4 h-12 rounded border border-[#eaecef] dark:border-[#474d57] hover:border-[#c99400] dark:hover:border-primary mb-5 ">
             <input
-              id="yellow-checkbox"
-              type="checkbox"
-              checked={keepLogin}
-              onChange={handleCheckbox}
-              className=" h-[14px] w-[14px] accent-primary  rounded cursor-pointer"
+              className="w-full h-full px-3 outline-none bg-transparent mb-[2px]"
+              {...register('email')}
+              autoComplete="new-password"
             />
-            <label htmlFor="yellow-checkbox" className="ml-2 text-sm font-medium">
-              Keep me signed in
-            </label>
+            <small className="text-[#F6465D]">{errors.email?.message}</small>
+
+            {!!watchLoginId && (
+              <button
+                type="button"
+                className=" w-5  text-[#B7BDC6] dark:text-[#5e6673] pr-5 absolute right-0 top-1/2 translate-y-[-46%] "
+                onClick={() => setValue('email', '')}
+              >
+                <FontAwesomeIcon icon={faCircleXmark} />
+              </button>
+            )}
           </div>
-          <div className="text-[#F6465D] mb-2">{error}</div>
-          {/* button */}
-          <Button
-            type="submit"
-            primary
-            className={'w-full justify-center items-center whitespace-nowrap h-12 py-[6px] dark:text-textColor mt-2'}
-          >
-            Log In
-          </Button>
-        </form>
-      )}
+        </div>
+        {/* password */}
+        <div>
+          <label className="font-normal cursor-text ">Password</label>
+          <div className="relative mt-1 w-full leading-4 h-12 rounded border border-[#eaecef] dark:border-[#474d57] hover:border-[#c99400] dark:hover:border-primary mb-5 ">
+            <input
+              className="w-full h-full px-3 outline-none bg-transparent mb-[2px]"
+              type="password"
+              autoComplete="new-password"
+              {...register('password')}
+            />
+            <small className="text-[#F6465D]">{errors.password?.message}</small>
+          </div>
+        </div>
+        {/* Checkbox */}
+        <div className="flex items-center my-3">
+          <input
+            id="yellow-checkbox"
+            type="checkbox"
+            checked={keepLogin}
+            onChange={handleCheckbox}
+            className=" h-[14px] w-[14px] accent-primary  rounded cursor-pointer"
+          />
+          <label htmlFor="yellow-checkbox" className="ml-2 text-sm font-medium">
+            Keep me signed in
+          </label>
+        </div>
+        <div className="text-[#F6465D] mb-2">{error}</div>
+        {/* button */}
+        <Button
+          type="submit"
+          primary
+          className={'w-full justify-center items-center whitespace-nowrap h-12 py-[6px] dark:text-textColor mt-2'}
+        >
+          Log In
+        </Button>
+      </form>
     </>
   );
 }

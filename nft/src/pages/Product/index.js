@@ -8,94 +8,92 @@ import { useEffect } from 'react';
 import NFTItem from '../../components/Collection/NFTItem';
 import Select from './Select';
 import Pagination from '../../components/Pagination';
-import images from '../../assets/images';
+import { ToastContainer } from 'react-toastify';
+import { API_PRODUCT } from '../../services/Constant';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import Button from '../../components/Button';
+import Skeleton from '../../components/Collection/NFTItemSkeleton';
 //import Skeleton from '../../components/Collection/NFTItemSkeleton';
 
 const sortPrice = [
   {
     id: 1,
     name: 'Price Low - High',
+    sort: 'price',
+    direction: 'ASC',
   },
   {
     id: 2,
     name: 'Price High - Low',
+    sort: 'price',
+    direction: 'DESC',
   },
   {
     id: 3,
     name: 'Recently Created',
+    sort: 'createDate',
+    direction: 'DESC',
   },
 ];
 
-const people = [
-  {
-    id: 1,
-    name: 'All author',
-    avatar: images.logo,
-  },
-  {
-    id: 2,
-    name: 'Wade Cooper',
-    avatar:
-      'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 3,
-    name: 'Arlene Mccoy',
-    avatar:
-      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 4,
-    name: 'Devon Webb',
-    avatar:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80',
-  },
-  {
-    id: 5,
-    name: 'Tom Cook',
-    avatar:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-];
-
-const filter = [
-  {
-    id: 1,
-    name: 'Price < 100$',
-  },
-  {
-    id: 2,
-    name: 'Price > 100$ & Price < 500$',
-  },
-  {
-    id: 3,
-    name: 'Price > 500$',
-  },
-];
-
-function Ranking() {
+function Product() {
   const [searchValue, setSearchValue] = useState('');
-  const [searchResult, setSearchResult] = useState([]);
+  const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  console.log(currentPage);
+  const [loading, setLoading] = useState(false);
+  const id = useParams();
+  const [selected, setSelected] = useState(sortPrice[0]);
+  const [priceStart, setPriceStart] = useState(0);
+  const [priceEnd, setPriceEnd] = useState(10000);
+  const [totalPages, setTotalPages] = useState(Number);
 
   const debounced = useDebounce(searchValue, 500);
-
   const refInput = useRef();
+  const schema = yup
+    .object({
+      start: yup.number().integer().required().moreThan(-1),
+      end: yup.number().integer().required().moreThan(0),
+    })
+    .required();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   useEffect(() => {
-    if (!debounced.trim()) {
-      setSearchResult([]);
-      return;
-    }
-    setTimeout(() => {
-      setSearchResult([1, 2, 3]);
-    }, 0);
-  }, [debounced]);
+    setLoading(true);
+    const fectchApi = async () => {
+      try {
+        const response = await axios.get(API_PRODUCT + '/find/menu', {
+          params: {
+            query: debounced,
+            id: id.id,
+            pricestart: priceStart.toFixed(1),
+            priceend: priceEnd.toFixed(1),
+            page: currentPage,
+            size: 12,
+            sort: selected.sort + ',' + selected.direction,
+          },
+        });
+        setData(response.data.content);
+        console.log(response);
+        setTotalPages(response.data.totalPages);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    };
+    fectchApi();
+  }, [debounced, selected, priceEnd, priceStart, id, currentPage]);
 
   const handleClear = () => {
     setSearchValue('');
-    setSearchResult([]);
     refInput.current.focus();
   };
 
@@ -104,6 +102,12 @@ function Ranking() {
     if (!searchValue.startsWith(' ')) {
       setSearchValue(searchValue);
     }
+  };
+
+  const handleSubmitInput = (data) => {
+    console.log(data);
+    setPriceStart(data.start);
+    setPriceEnd(data.end);
   };
 
   return (
@@ -136,26 +140,52 @@ function Ranking() {
             </div>
           </div>
           <div className="flex">
-            {/* filter author */}
-            <Select list={people} img />
             {/* filter price */}
-            <Select list={filter} />
+            <form autoComplete="off" className="ml-6 flex" onSubmit={handleSubmit(handleSubmitInput)}>
+              <div
+                className={`p-2 h-11 border rounded-l ${
+                  errors.start?.message || errors.end?.message ? 'border-red-500' : ' dark:border-[#474D57]'
+                }`}
+              >
+                <input
+                  {...register('start')}
+                  className="outline-none border-none bg-transparent dark:bg-transparent h-full w-20"
+                  placeholder="Min"
+                  autoComplete="off"
+                />
+                <span className="pr-2">-</span>
+                <input
+                  {...register('end')}
+                  className="outline-none border-none bg-transparent dark:bg-transparent h-full w-20"
+                  placeholder="Max"
+                  autoComplete="off"
+                />
+              </div>
+              <Button
+                type="submit"
+                className="h-11 border  dark:border-[#474D57] rounded-r  px-4"
+                disabled={errors.start?.message || errors.end?.message ? true : false}
+              >
+                Apply
+              </Button>
+            </form>
             {/* sort */}
-            <Select list={sortPrice} />
+            <Select list={sortPrice} selected={selected} setSelected={setSelected} />
           </div>
         </div>
         {/* item */}
         <div className="grid grid-cols-4 gap-10 mt-14 ">
-          <NFTItem />
-          <NFTItem />
-          <NFTItem />
-          <NFTItem />
-          <NFTItem />
+          {!loading && data.map((data, index) => <NFTItem data={data} key={data.id} index={index} cart />)}
+          {loading &&
+            Array(8)
+              .fill(0)
+              .map((item, index) => <Skeleton key={index} />)}
         </div>
-        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={6} />
+        <ToastContainer />
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
       </div>
     </div>
   );
 }
 
-export default Ranking;
+export default Product;
