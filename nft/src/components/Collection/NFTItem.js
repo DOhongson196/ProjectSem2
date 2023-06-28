@@ -6,6 +6,7 @@ import { AuthContext, DarkModeContext } from '../../context';
 import { useAxios } from '../../hooks';
 import { API_CART, getProductImageUrl } from '../../services/Constant';
 import Button from '../Button';
+import { CheckIcon } from '../Icons';
 
 function NFTItem({ data }) {
   const api = useAxios();
@@ -58,21 +59,30 @@ function NFTItem({ data }) {
   };
   return (
     <div
-      className="cursor-pointer w-72 group h-[484px]  shadow-xl bg-white dark:bg-[#1e2329] ease-out rounded-xl transition-all duration-400 hover:translate-y-[-4px] hover:shadow-xl overflow-hidden"
+      className="cursor-pointer w-72 group h-[490px]  shadow-xl bg-white dark:bg-[#1e2329] ease-out rounded-xl transition-all duration-400 hover:translate-y-[-4px] hover:shadow-xl overflow-hidden"
       onClick={() => navigate('/nftdetail/' + data?.id)}
     >
       {/* background image */}
-      <div className="object-cover w-full h-[400px]">
+      <div className="object-cover w-full h-[384px]">
         <img className="w-full h-full  object-cover" src={getProductImageUrl(data?.image)} alt="" />
       </div>
       {/* content */}
       <div className="relative group-hover:-mt-11 bg-white dark:bg-[#1e2329]  flex flex-col p-4 overflow-hidden z-10 transition-all ease-linear duration-400">
-        <div className="text-xs font-semibold dark:text-[#eaecef]">{data?.name}</div>
+        <div className="flex items-center">
+          <span className="text-base font-semibold text-[#1e2329] dark:text-textDarkMode text-ellipsis">
+            {data?.name}
+          </span>
+          <CheckIcon width="1.2rem" height="1.1rem" className={'text-[#f0b90b] ml-2'} />
+        </div>
         <div className="flex flex-col items-center mt-3">
-          <div className="flex justify-between w-full ">
-            {!data?.discount > 0 ? (
+          {!data?.discount > 0 ? (
+            <div className="flex justify-between w-full items-center">
+              <div className="text-[#707a8a] dark:text-[#b7bdc6] text-sm mr-2">Price</div>
               <div className="text-base font-bold dark:text-[#eaecef]">{data?.price} USD</div>
-            ) : (
+            </div>
+          ) : (
+            <div className="flex justify-between w-full items-center">
+              <div className="text-[#707a8a] dark:text-[#b7bdc6] text-sm mr-2">Price</div>
               <div className="flex items-center">
                 <div className="text-base text-[#707a8a] dark:text-[#b7bdc6] line-through  decoration-double decoration-1">
                   {data?.price} USD
@@ -83,8 +93,9 @@ function NFTItem({ data }) {
                   </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
+
           <div
             className="flex justify-center absolute group-hover:relative mt-4 group-hover:bottom-0 -bottom-14 w-[256px]"
             onClick={(e) => e.stopPropagation()}
