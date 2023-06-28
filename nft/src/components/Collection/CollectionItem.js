@@ -106,7 +106,20 @@ function CollectionItem({ data = [], index, cart = false }) {
         </div>
         {/* price */}
         <div className={`flex items-end justify-end w-[200px] ${cart ? 'group-hover:hidden' : ''}`}>
-          {data?.price} USD
+          {!data?.discount > 0 ? (
+            <div className="text-base font-bold dark:text-[#eaecef]">{data?.price} USD</div>
+          ) : (
+            <div className="flex flex-col items-center">
+              <div className="text-base text-[#707a8a] dark:text-[#b7bdc6] line-through  decoration-double decoration-1">
+                {data?.price} USD
+              </div>
+              <div>
+                <div className="ml-3 text-lg font-bold text-[#f04f4f]">
+                  {data?.price * ((100 - data?.discount) / 100)} USD
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         {/* Button */}
         {cart && (

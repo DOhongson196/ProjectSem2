@@ -70,8 +70,20 @@ function NFTItem({ data }) {
         <div className="text-xs font-semibold dark:text-[#eaecef]">{data?.name}</div>
         <div className="flex flex-col items-center mt-3">
           <div className="flex justify-between w-full ">
-            <div className="text-[#707a8a] dark:text-[#b7bdc6] text-xs mr-2">Price</div>
-            <div className=" text-sm font-bold dark:text-[#eaecef]">{data?.price} USD</div>
+            {!data?.discount > 0 ? (
+              <div className="text-base font-bold dark:text-[#eaecef]">{data?.price} USD</div>
+            ) : (
+              <div className="flex items-center">
+                <div className="text-base text-[#707a8a] dark:text-[#b7bdc6] line-through  decoration-double decoration-1">
+                  {data?.price} USD
+                </div>
+                <div>
+                  <div className="ml-3 text-lg font-bold text-[#f04f4f]">
+                    {data?.price * ((100 - data?.discount) / 100)} USD
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <div
             className="flex justify-center absolute group-hover:relative mt-4 group-hover:bottom-0 -bottom-14 w-[256px]"
