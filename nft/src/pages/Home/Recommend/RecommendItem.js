@@ -8,7 +8,7 @@ function RecommendItem({ data }) {
       <Link to={'/nftdetail/' + data?.id}>
         <div className=" ease-in-out shadow-xl cursor-pointer rounded-xl duration-300 hover:translate-y-[-4px] hover:shadow-2xl overflow-hidden">
           {/* background image */}
-          <div className="relative w-full h-[400px]">
+          <div className="relative w-full h-[500px]">
             <div className="object-cover w-full h-full">
               <img className="w-full h-full object-cover" src={getProductImageUrl(data?.image)} alt="" />
             </div>

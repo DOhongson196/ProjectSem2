@@ -58,11 +58,11 @@ function NFTItem({ data }) {
   };
   return (
     <div
-      className="cursor-pointer w-72 group h-96  shadow-xl bg-white dark:bg-[#1e2329] ease-out rounded-xl transition-all duration-400 hover:translate-y-[-4px] hover:shadow-xl overflow-hidden"
+      className="cursor-pointer w-72 group h-[484px]  shadow-xl bg-white dark:bg-[#1e2329] ease-out rounded-xl transition-all duration-400 hover:translate-y-[-4px] hover:shadow-xl overflow-hidden"
       onClick={() => navigate('/nftdetail/' + data?.id)}
     >
       {/* background image */}
-      <div className="object-cover w-full h-[300px]">
+      <div className="object-cover w-full h-[400px]">
         <img className="w-full h-full  object-cover" src={getProductImageUrl(data?.image)} alt="" />
       </div>
       {/* content */}

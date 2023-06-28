@@ -49,7 +49,7 @@ function FormResetPass({ email }) {
       })
       .catch((err) => {
         console.log(err);
-        setError(error?.response?.data?.message);
+        setError(err?.response?.data?.message);
         setValue('password', '');
         setValue('confirmPassword', '');
       });
@@ -107,7 +107,7 @@ function FormResetPass({ email }) {
             </div>
           </div>
           {/* button */}
-          <span className="text-[#F6465D] ">{error}</span>
+          <span className="text-[#F6465D] text-sm">{error}</span>
           <Button
             type="submit"
             primary
